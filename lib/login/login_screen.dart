@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:gp/login/signup_screen.dart';
 
 import '../layout/navscrren.dart';
 import '../shared/components/components.dart';
@@ -142,7 +143,14 @@ const SizedBox(
                       const Text(
                         'if you don\'t have accoun',
                       ),
-                      TextButton(onPressed: () {}, child: const Text('Sign Up Now',
+                      TextButton(onPressed: () {
+                        Navigator.push(
+                            this.context,
+                            MaterialPageRoute(
+                            builder: (context) => Auth()),
+                        );
+
+                      }, child: const Text('Sign Up Now',
                         style:  TextStyle(
                         decoration: TextDecoration.underline,
                           color: Color.fromRGBO(1, 205, 170,70),

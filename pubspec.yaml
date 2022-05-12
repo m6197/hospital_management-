@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.4
   sqflite: ^2.0.2+1
   auth_buttons: ^2.0.4
+  responsive_sizer: ^3.0.7
   animated_button_bar: ^0.0.2
 dev_dependencies:
   flutter_test:
