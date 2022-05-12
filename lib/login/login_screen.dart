@@ -1,9 +1,12 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../layout/navscrren.dart';
 import '../shared/components/components.dart';
 
 class loginScreen extends StatefulWidget {
+  const loginScreen({Key? key}) : super(key: key);
+
   @override
   State<loginScreen> createState() => _loginScreenState();
 }
@@ -29,7 +32,7 @@ class _loginScreenState extends State<loginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:
                 [
-                  Center(
+                  const Center(
                     child: Text(
                          'Welcome Back,',
                         style: TextStyle
@@ -42,7 +45,7 @@ class _loginScreenState extends State<loginScreen> {
                   Center(
                     child: Container(
                       width: 137,
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Log in!',
                           style: TextStyle
@@ -54,7 +57,7 @@ class _loginScreenState extends State<loginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
   height: 40,
 ),
                   defaultformfiled(
@@ -71,10 +74,12 @@ class _loginScreenState extends State<loginScreen> {
                     }
 
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  defaultformfiled(controller: passcontrol,
+                  defaultformfiled(
+
+                    controller: passcontrol,
                       type: TextInputType.emailAddress,
                       isPassword: ispassword,
                       validate: (value) {
@@ -97,47 +102,50 @@ class _loginScreenState extends State<loginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(onPressed: () {}, child: Text('Forgot password?'
-
+                      TextButton(onPressed: () {}, child: const Text('Forgot password?',
+                          style: TextStyle(
+                            color: Color.fromRGBO(1, 205, 170,100),
+                            fontSize: 12,
+                          ),
                       ),
-
                       ),
                     ],
                   ),
-                  SizedBox
+                  const SizedBox
                     (
                     height: 40,
                   ),
                   Center(
                     child: defaultButton(
+
                       width: 470,
-
-
-
                       text: 'Log in',
                          function: () {
                            if (formkey.currentState!.validate()) {
                              print(emailcontrol.text);
                              print(passcontrol.text);
-
-                           }
-
-                         }
-
-                    ),
+                             Navigator.push(
+                               this.context,
+                               MaterialPageRoute(
+                                   builder: (context) => navscreen()),
+                             );
+                           };
+                         },
+                    )
                   ),
-SizedBox(
+const SizedBox(
   height: 55,
 ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'if you don\'t have accoun',
                       ),
-                      TextButton(onPressed: () {}, child: Text('Sign Up Now',
-                        style: TextStyle(
+                      TextButton(onPressed: () {}, child: const Text('Sign Up Now',
+                        style:  TextStyle(
                         decoration: TextDecoration.underline,
+                          color: Color.fromRGBO(1, 205, 170,70),
                       ),
                       ),
                       ),
@@ -152,4 +160,9 @@ SizedBox(
       ),
     );
   }
+}
+Color COLOR()
+{
+  return Color.fromRGBO(1, 205, 170,70);
+
 }

@@ -1,4 +1,7 @@
+import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 Widget defaultButton({
   double width: double.infinity,
@@ -7,16 +10,16 @@ Widget defaultButton({
   required String text,
 }) =>
     Container(
-
   width: width,
-  child: ElevatedButton(
 
+  child: ElevatedButton(
 style: ButtonStyle(
+  backgroundColor: MaterialStateProperty.all(Color.fromRGBO(1, 205, 170,70),),
 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
 RoundedRectangleBorder(
 borderRadius: BorderRadius.circular(15.0),
 )
-)
+),
 ),
 
     onPressed: function,
@@ -26,7 +29,7 @@ borderRadius: BorderRadius.circular(15.0),
       style: TextStyle(
         color: Colors.white,
       ),
-    ),
+   ),
   ),
 
     );
@@ -49,8 +52,8 @@ Widget defaultformfiled ({
   VoidCallback? suffixpressed,
 
 
-
 }) => TextFormField(
+  textInputAction: TextInputAction.next,
 controller: controller,
 onFieldSubmitted: onSubmit,
 keyboardType:  TextInputType.emailAddress,
@@ -58,23 +61,30 @@ validator: validate,
 obscureText: isPassword,
 decoration: InputDecoration(
 labelText: label,
+    labelStyle: TextStyle(
+      color: Color.fromRGBO(35, 32, 32, 100),
+    ),
+focusedBorder: OutlineInputBorder(
+  borderRadius: BorderRadius.circular(15.0),
+  borderSide: BorderSide(
+  color: Colors.grey
+),
+),
 border: OutlineInputBorder(
 borderRadius: BorderRadius.circular(15.0),
-
 ),
 prefixIcon: Icon(
   prefix,
-    color: Colors.greenAccent,
+    color: Color.fromRGBO(1, 205, 170,70),
 ),
   suffixIcon: suffix != null ? IconButton(
     icon: Icon(
       suffix,
-      color: Colors.greenAccent,
+      color: Color.fromRGBO(1, 205, 170,70),
     ), onPressed: suffixpressed,
   ) : null,
 ),
 );
-
 
 
 
