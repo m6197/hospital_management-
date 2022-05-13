@@ -140,7 +140,7 @@ const SizedBox(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'if you don\'t have accoun',
+                        'if you don\'t have account',
                       ),
                       TextButton(onPressed: () {}, child: const Text('Sign Up Now',
                         style:  TextStyle(
