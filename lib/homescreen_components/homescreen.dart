@@ -1,7 +1,9 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../layout/Speciality_screen.dart';
-import '../layout/Operate_screen.dart';
+import '../../layout/doctors_screen.dart';
+import '../layout/Analysis.dart';
 import '../layout/Radiolgy_Screen.dart';
 class homescrren extends StatefulWidget {
   const homescrren({Key? key}) : super(key: key);
@@ -58,21 +60,21 @@ class _homescrrenState extends State<homescrren> {
                 ],
             ),
              ),
-             const SizedBox(height: 20,),
-             SingleChildScrollView(
-        child: Column (
+               Column (
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
             Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SizedBox(
-                height: 100,
-                child:   ListView.separated(
-                  scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 20,
+               ),
+              child: Container(
+                height: 120,
+
+                child:   ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: 1,
                   itemBuilder: (context, index) => buildStoryItem(),
-                  separatorBuilder: (context, index)  => const SizedBox(width: 15,),
+
 
                 ),
               ),
@@ -109,7 +111,7 @@ class _homescrrenState extends State<homescrren> {
 
           ],
         ),
-      ),
+
           const SizedBox(height: 15,),
 
           Padding(
@@ -204,9 +206,10 @@ class _homescrrenState extends State<homescrren> {
   }
 
   Widget buildStoryItem()=>  Row(
+
     children: [
       SizedBox(
-        width: 65.0,
+        width: 92.0,
         child: Column(
           children: [
             Stack(
@@ -215,7 +218,10 @@ class _homescrrenState extends State<homescrren> {
             InkWell(
               borderRadius: BorderRadius.circular(22),
               splashColor: Colors.black ,
-            onTap: () => print("image clicked"),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Doctor_screen()),
+            ),
                   child: Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
@@ -225,8 +231,8 @@ class _homescrrenState extends State<homescrren> {
                       image: AssetImage(
                         'assets/image/noun-doctor-987749.png',
                       ),
-                      height: 65,
-                      width: 65,
+                      height: 72,
+                      width: 72,
                     ),
                   ),
                 ),
@@ -251,9 +257,9 @@ class _homescrrenState extends State<homescrren> {
           ],
         ),
       ),
-      const SizedBox(width: 20,),
+
       SizedBox(
-        width: 65.0,
+        width: 92.0,
         child: Column(
           children: [
             Stack(
@@ -276,8 +282,8 @@ class _homescrrenState extends State<homescrren> {
                       image: AssetImage(
                         'assets/image/noun-report-987711.png',
                       ),
-                      height: 65,
-                      width: 65,
+                      height: 72,
+                      width: 72,
                     ),
                   ),
                 ),
@@ -302,9 +308,8 @@ class _homescrrenState extends State<homescrren> {
           ],
         ),
       ),
-      const SizedBox(width: 20,),
       SizedBox(
-        width: 65.0,
+        width: 92.0,
         child: Column(
           children: [
             Stack(
@@ -313,7 +318,10 @@ class _homescrrenState extends State<homescrren> {
                 InkWell(
                   borderRadius: BorderRadius.circular(22),
                   splashColor: Colors.black ,
-                  onTap: () => print("image clicked"),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Analysis_screen()),
+                  ),
                   child: Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
@@ -323,8 +331,8 @@ class _homescrrenState extends State<homescrren> {
                       image: AssetImage(
                         'assets/image/noun-test-tube-987718.png',
                       ),
-                      height: 65,
-                      width: 65,
+                      height: 72,
+                      width: 72,
                     ),
                   ),
                 ),
@@ -349,9 +357,8 @@ class _homescrrenState extends State<homescrren> {
           ],
         ),
       ),
-      const SizedBox(width: 20,),
       SizedBox(
-        width: 65.0,
+        width: 92,
         child: Column(
           children: [
             Stack(
@@ -373,8 +380,8 @@ class _homescrrenState extends State<homescrren> {
                       image: AssetImage(
                         'assets/image/noun-x-ray-4792268.png',
                       ),
-                      height: 65,
-                      width: 65,
+                      height: 72,
+                      width: 72,
                     ),
                   ),
                 ),
@@ -391,56 +398,6 @@ class _homescrrenState extends State<homescrren> {
               height: 5,
             ),
             const Text('Radiolgy',
-              style: TextStyle(
-                  fontSize: 11
-              ),
-              maxLines: 1,
-            ),
-          ],
-        ),
-      ),
-      const SizedBox(width: 20,),
-      SizedBox(
-        width: 65.0,
-        child: Column(
-          children: [
-            Stack(
-              alignment: AlignmentDirectional.bottomEnd,
-              children: [
-                InkWell(
-                  borderRadius: BorderRadius.circular(22),
-                  splashColor: Colors.black ,
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => OperateScreen()),
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromRGBO(1, 205, 170 ,190),
-                    ),
-                    child: const Image(
-                      image: AssetImage(
-                        'assets/image/noun-stretcher-987682.png',
-                      ),
-                      height: 65,
-                      width: 65,
-                    ),
-                  ),
-                ),
-
-                const Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    bottom: 5.0,
-                    end: 3.0,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Text('Operate',
               style: TextStyle(
                   fontSize: 11
               ),

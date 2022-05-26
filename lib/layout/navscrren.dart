@@ -1,8 +1,16 @@
+
 import 'package:flutter/material.dart';
-import '../homescreen_components/community.dart';
+import 'package:gp/layout/profile_screen.dart';
+
 import '../homescreen_components/homescreen.dart';
-import '../homescreen_components/profile_screen.dart';
 import '../homescreen_components/setting_screen.dart';
+
+
+
+
+
+
+
 
 class navscreen extends StatefulWidget {
 
@@ -14,8 +22,7 @@ class _navscreenState extends State<navscreen> {
   int currentIndex = 0;
   List<Widget> screens = [
     homescrren(),
-    community(),
-    profile(),
+    ProfileScreen(),
     setting(),
   ];
   @override
@@ -43,14 +50,6 @@ class _navscreenState extends State<navscreen> {
                    'assets/image/noun-home-4796082.png',
                  ),
                ),
-             label: '',
-           ),
-           BottomNavigationBarItem(
-             icon: ImageIcon(
-               AssetImage(
-                 'assets/image/community.png',
-               ),
-             ),
              label: '',
            ),
            BottomNavigationBarItem(

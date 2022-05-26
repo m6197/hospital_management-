@@ -1,17 +1,9 @@
-
-
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter/material.dart';
 
-class OperateScreen extends StatefulWidget {
+class Analysis_screen extends StatelessWidget {
+  const Analysis_screen({Key? key}) : super(key: key);
 
-
-  @override
-  State<OperateScreen> createState() => _OperateScreenState();
-}
-
-class _OperateScreenState extends State<OperateScreen> {
-  bool showContainer=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +22,7 @@ class _OperateScreenState extends State<OperateScreen> {
             ),
 
             child: Center(
-              child: Text('Operate',
+              child: Text('Analysis',
                 style: TextStyle(
                   fontSize: 32,
                   color: Colors.white,
@@ -79,57 +71,54 @@ class _OperateScreenState extends State<OperateScreen> {
               ),
             ],
           ),
-           Row(
-             crossAxisAlignment: CrossAxisAlignment.center,
-             mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(115, 50),
-                    maximumSize: const Size(115, 50),
-                    primary: Color.fromRGBO(1, 205, 170 ,120),
-                    shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
-                    ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(115, 50),
+                  maximumSize: const Size(115, 50),
+                  primary: Color.fromRGBO(1, 205, 170 ,120),
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(20.0),
                   ),
-                  child: Text("Cataract"),
-                  onPressed: (){},
                 ),
-                SizedBox(width: 13,),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(115, 50),
-                    maximumSize: const Size(115, 50),
-                    primary: Color.fromRGBO(1, 205, 170 ,120),
-                    shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
-                    ),
+                child: Text("Coved 19"),
+                onPressed: (){},
+              ),
+              SizedBox(width: 13,),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(115, 50),
+                  maximumSize: const Size(115, 50),
+                  primary: Color.fromRGBO(1, 205, 170 ,120),
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(20.0),
                   ),
-              child: Text("     Denta\nRestoration"),
+                ),
+                child: Text("CPC"),
 
 
-                  onPressed: (){},
-                ),
-                SizedBox(width: 13,),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(115, 50),
-                    maximumSize: const Size(115, 50),
-                    primary: Color.fromRGBO(1, 205, 170 ,120),
-                    shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
-                    ),
+                onPressed: (){},
+              ),
+              SizedBox(width: 13,),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(115, 50),
+                  maximumSize: const Size(115, 50),
+                  primary: Color.fromRGBO(1, 205, 170 ,120),
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(20.0),
                   ),
-                  child: Text("Circumcisiom",
-                     style: TextStyle(
-                     fontSize: 13,
-                      ),
-                  ),
-                  onPressed: (){},
                 ),
-              ],
-            ),
+                child: Text("DNA",
 
+                ),
+                onPressed: (){},
+              ),
+            ],
+          ),
         ],
       ),
     );

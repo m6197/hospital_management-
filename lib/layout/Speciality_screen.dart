@@ -1,6 +1,10 @@
+
+
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../layoutComponents/bones.dart';
 
 class SpecialityScreen extends StatefulWidget {
 
@@ -49,9 +53,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                   padding: const EdgeInsets.all(16.0),
                   invertedSelection: false,
                   children: [
-                    ButtonBarEntry ( onTap: () => setState(() {
-                      thistests();
-                    }),
+                    ButtonBarEntry ( onTap: () => ()  {},
                     child: Text('All',
                     style: TextStyle(
                       color: Colors.black,
@@ -79,7 +81,56 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                     ),
                   ],
                 ),
-              thistests(),
+      Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+    ElevatedButton(
+    style: ElevatedButton.styleFrom(
+    minimumSize: const Size(115, 50),
+    maximumSize: const Size(115, 50),
+    primary: Color.fromRGBO(1, 205, 170 ,120),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(20.0),
+    ),
+    ),
+    child: Text("Bones"),
+    onPressed: () => Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const BonesScreen()),
+    ),
+    ),
+    SizedBox(width: 13,),
+    ElevatedButton(
+    style: ElevatedButton.styleFrom(
+    minimumSize: const Size(115, 50),
+    maximumSize: const Size(115, 50),
+    primary: Color.fromRGBO(1, 205, 170 ,120),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(20.0),
+    ),
+    ),
+    child: Text("Considerration",
+    style: TextStyle(
+    fontSize: 12.5,
+    ),),
+    onPressed: (){},
+    ),
+    SizedBox(width: 13,),
+    ElevatedButton(
+    style: ElevatedButton.styleFrom(
+    minimumSize: const Size(115, 50),
+    maximumSize: const Size(115, 50),
+    primary: Color.fromRGBO(1, 205, 170 ,120),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(20.0),
+    ),
+    ),
+    child: Text("Skin Desies"),
+    onPressed: (){},
+    ),
+    ],
+    ),
             ],
           ),
 
@@ -87,55 +138,5 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
     ),
     );
   }
-}
-Widget thistests() {
-  return  Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(115, 50),
-          maximumSize: const Size(115, 50),
-          primary: Color.fromRGBO(1, 205, 170 ,120),
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20.0),
-          ),
-        ),
-        child: Text("Bones"),
-        onPressed: (){},
-      ),
-      SizedBox(width: 13,),
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(115, 50),
-          maximumSize: const Size(115, 50),
-          primary: Color.fromRGBO(1, 205, 170 ,120),
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20.0),
-          ),
-        ),
-        child: Text("Considerration",
-          style: TextStyle(
-            fontSize: 12.5,
-          ),),
-        onPressed: (){},
-      ),
-      SizedBox(width: 13,),
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(115, 50),
-          maximumSize: const Size(115, 50),
-          primary: Color.fromRGBO(1, 205, 170 ,120),
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20.0),
-          ),
-        ),
-        child: Text("Skin Desies"),
-        onPressed: (){},
-      ),
-    ],
-  );
-
 }
 
