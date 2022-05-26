@@ -65,13 +65,13 @@ class _homescrrenState extends State<homescrren> {
           children: [
 
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,
+              padding: const EdgeInsets.symmetric(horizontal: 12,
                ),
               child: Container(
                 height: 120,
 
                 child:   ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
                   itemCount: 1,
                   itemBuilder: (context, index) => buildStoryItem(),
 
