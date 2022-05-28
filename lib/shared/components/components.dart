@@ -46,7 +46,7 @@ Widget defaultformfiled ({
   final String? Function(String?)? onSubmit,
   required String? Function(String?)? validate,
   required String label,
-  required IconData prefix,
+  IconData? prefix,
   bool isPassword = false,
   IconData? suffix,
   VoidCallback? suffixpressed,
@@ -60,6 +60,13 @@ keyboardType:  TextInputType.emailAddress,
 validator: validate,
 obscureText: isPassword,
 decoration: InputDecoration(
+  enabledBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(15.0),
+    borderSide: BorderSide(
+      color: Color.fromRGBO(1, 205, 170,70),
+
+    ),
+  ),
 labelText: label,
     labelStyle: TextStyle(
       color: Color.fromRGBO(35, 32, 32, 100),
@@ -67,11 +74,12 @@ labelText: label,
 focusedBorder: OutlineInputBorder(
   borderRadius: BorderRadius.circular(15.0),
   borderSide: BorderSide(
-  color: Colors.grey
+  color: Color.fromRGBO(1, 205, 170,70),
 ),
 ),
 border: OutlineInputBorder(
 borderRadius: BorderRadius.circular(15.0),
+
 ),
 prefixIcon: Icon(
   prefix,

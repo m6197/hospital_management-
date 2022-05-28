@@ -1,7 +1,6 @@
+import 'package:course1/layout/profile_screen.dart';
 
 import 'package:flutter/material.dart';
-import 'package:gp/layout/profile_screen.dart';
-
 import '../homescreen_components/homescreen.dart';
 import '../homescreen_components/setting_screen.dart';
 

@@ -1,10 +1,10 @@
 
+import 'package:course1/layout/Analysis.dart';
+import 'package:course1/layout/Radiolgy_Screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../layout/Speciality_screen.dart';
 import '../../layout/doctors_screen.dart';
-import '../layout/Analysis.dart';
-import '../layout/Radiolgy_Screen.dart';
 class homescrren extends StatefulWidget {
   const homescrren({Key? key}) : super(key: key);
 

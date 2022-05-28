@@ -71,53 +71,56 @@ class Analysis_screen extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(115, 50),
-                  maximumSize: const Size(115, 50),
-                  primary: Color.fromRGBO(1, 205, 170 ,120),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(115, 50),
+                    maximumSize: const Size(115, 50),
+                    primary: Color.fromRGBO(1, 205, 170 ,120),
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(20.0),
+                    ),
                   ),
+                  child: Text("Coved 19"),
+                  onPressed: (){},
                 ),
-                child: Text("Coved 19"),
-                onPressed: (){},
-              ),
-              SizedBox(width: 13,),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(115, 50),
-                  maximumSize: const Size(115, 50),
-                  primary: Color.fromRGBO(1, 205, 170 ,120),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
+                SizedBox(width: 13,),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(115, 50),
+                    maximumSize: const Size(115, 50),
+                    primary: Color.fromRGBO(1, 205, 170 ,120),
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(20.0),
+                    ),
                   ),
-                ),
-                child: Text("CPC"),
+                  child: Text("CPC"),
 
 
-                onPressed: (){},
-              ),
-              SizedBox(width: 13,),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(115, 50),
-                  maximumSize: const Size(115, 50),
-                  primary: Color.fromRGBO(1, 205, 170 ,120),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
+                  onPressed: (){},
+                ),
+                SizedBox(width: 13,),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(115, 50),
+                    maximumSize: const Size(115, 50),
+                    primary: Color.fromRGBO(1, 205, 170 ,120),
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(20.0),
+                    ),
                   ),
-                ),
-                child: Text("DNA",
+                  child: Text("DNA",
 
+                  ),
+                  onPressed: (){},
                 ),
-                onPressed: (){},
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
