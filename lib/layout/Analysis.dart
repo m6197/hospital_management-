@@ -1,6 +1,8 @@
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../layoutComponents/Coved 19.dart';
+
 class Analysis_screen extends StatelessWidget {
   const Analysis_screen({Key? key}) : super(key: key);
 
@@ -87,7 +89,13 @@ class Analysis_screen extends StatelessWidget {
                     ),
                   ),
                   child: Text("Coved 19"),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CovedScreen()),
+                    );
+                  },
                 ),
                 SizedBox(width: 13,),
                 ElevatedButton(

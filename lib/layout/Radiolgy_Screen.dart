@@ -1,6 +1,7 @@
 
 
 import 'package:animated_button_bar/animated_button_bar.dart';
+import 'package:course1/layoutComponents/X-rays.dart';
 import 'package:flutter/material.dart';
 
 class RadiolgyScreen extends StatefulWidget {
@@ -95,7 +96,13 @@ class _RadiolgyScreenState extends State<RadiolgyScreen> {
                       ),
                     ),
                     child: Text("X-rays"),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Xrays()),
+                      );
+                    },
                   ),
                   SizedBox(width: 13,),
                   ElevatedButton(
