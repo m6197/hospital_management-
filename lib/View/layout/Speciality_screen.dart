@@ -1,5 +1,5 @@
 import 'package:animated_button_bar/animated_button_bar.dart';
-import 'package:course1/layoutComponents/bones.dart';
+import 'package:nabdat/View//layoutComponents/bones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
