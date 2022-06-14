@@ -19,6 +19,7 @@ class MainCubit extends Cubit<MainStates> {
   int currentIndex = 0;
   bool loadingDoctors = false;
   List<Doctor> doctors = [];
+  DateTime date = DateTime.now();
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
@@ -58,5 +59,32 @@ class MainCubit extends Cubit<MainStates> {
       loadingDoctors = false;
       emit(ErrorDoctorData());
     });
+  }
+
+  void getAvailableDoctors(String day) {
+    List<Doctor> availableDoctors = [];
+    String day = getDay(date.weekday);
+    doctors.forEach((element) {});
+  }
+}
+
+String getDay(int day) {
+  switch (day) {
+    case 1:
+      return 'mon_time';
+    case 2:
+      return 'tue_time';
+    case 3:
+      return 'wed_time';
+    case 4:
+      return 'thu_time';
+    case 5:
+      return 'fri_time';
+    case 6:
+      return 'sat_time';
+    case 7:
+      return 'sun_time';
+    default:
+      return '';
   }
 }

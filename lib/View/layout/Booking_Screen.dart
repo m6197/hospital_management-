@@ -1,275 +1,365 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabdat/Controller/MainCubit/cubit.dart';
+import 'package:nabdat/Controller/MainCubit/states.dart';
+import 'package:nabdat/Model/DoctorModel.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 import '../shared/components/components.dart';
+
 class BookingScreen extends StatelessWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+  final Doctor doctor;
+  BookingScreen(this.doctor);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-     body: Column(
-        children: [
-
-        Stack(
-
-          children: [ Container(
-          width:double.infinity,
-          height: 187,
-          decoration:  BoxDecoration(
-            color:  Color.fromRGBO(1, 205, 170,70),
-            borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(20.0),
-              bottomLeft: Radius.circular(20.0),
-            ),
-          ),
-
-          child: Center(
-            child: Text('Booking',
-              style: TextStyle(
-                fontSize: 32,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-      ),
-            Padding (
-              padding: const EdgeInsets.only(top:130,
-              left: 25,
-              right: 25),
-              child: Container(
-                height: 220,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(13),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 3,
-                      offset: Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 50,top: 20,),
-                          child: Image.asset(
-                            'assets/image/Rectangle 52.png',
+    return BlocConsumer<MainCubit, MainStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = MainCubit.GET(context);
+          return Scaffold(
+            body: CustomScrollView(slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(children: [
+                  Stack(children: [
+                    Container(
+                      width: double.infinity,
+                      height: 120.h,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(1, 205, 170, 70),
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(20.0.r),
+                          bottomLeft: Radius.circular(20.0.r),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Booking',
+                          style: TextStyle(
+                            fontSize: 32.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 25, left: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Dr. Ahmed Mohamed',
-                                style: TextStyle(
-                                  color: Color.fromRGBO(1, 205, 170, 50),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: 90.h, left: 25.w, right: 25.w),
+                      child: Container(
+                        height: 240.h,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(13.r),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2.r,
+                              blurRadius: 3.r,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(1.0.r),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: 20.w,
+                                  top: 10.h,
+                                ),
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 50.r,
+                                      backgroundImage:
+                                          NetworkImage(doctor.photo),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 15.h, left: 15.w),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Dr. ' + doctor.name,
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  200, 1, 91, 76),
+                                            ),
+                                          ),
+                                          Text(
+                                            doctor.specialize + ' Specialis',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Color.fromARGB(
+                                                  200, 1, 91, 76),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 15.h,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Image.asset(
+                                                  'assets/image/Path 52.png'),
+                                              Text(
+                                                '${doctor.rate ?? ''}',
+                                                style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      200, 1, 91, 76),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 50.w,
+                                              ),
+                                              Text(
+                                                '50 Reviews',
+                                                style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      200, 1, 91, 76),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                              Text(
-                                'Dental Specialis',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color.fromRGBO(1, 205, 170, 120),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Row(
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w, vertical: 15.h),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Image.asset('assets/image/Path 52.png'),
-                                  Text(
-                                    '4.5',
-                                    style: TextStyle(
-                                      color: Color.fromRGBO(1, 205, 170, 50),
+                                  Container(
+                                    height: 90.h,
+                                    width: 90.w,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(1, 205, 170, 170),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Patients',
+                                          style: TextStyle(
+                                            color:
+                                                Color.fromARGB(200, 1, 91, 76),
+                                          ),
+                                        ),
+                                        Text(
+                                          '100+',
+                                          style: TextStyle(
+                                            color:
+                                                Color.fromARGB(200, 1, 91, 76),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 50,
+                                  Container(
+                                    height: 90.h,
+                                    width: 90.w,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(1, 205, 170, 170),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Experiences',
+                                          style: TextStyle(
+                                            color:
+                                                Color.fromARGB(200, 1, 91, 76),
+                                          ),
+                                        ),
+                                        Text(
+                                          '10y+',
+                                          style: TextStyle(
+                                            color:
+                                                Color.fromARGB(200, 1, 91, 76),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    '50 Reviews',
-                                    style: TextStyle(
-                                      color: Color.fromRGBO(1, 205, 170, 50),
+                                  Container(
+                                    height: 90.h,
+                                    width: 90.w,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(1, 205, 170, 170),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Rateing',
+                                          style: TextStyle(
+                                            color:
+                                                Color.fromARGB(200, 1, 91, 76),
+                                          ),
+                                        ),
+                                        Text(
+                                          '${doctor.rate ?? 'Not Yet'}',
+                                          style: TextStyle(
+                                            color:
+                                                Color.fromARGB(200, 1, 91, 76),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ],
                               ),
-
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20,
-                          vertical: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: 80,
-                            width: 80,
-                            decoration: BoxDecoration(
-                              color:Color.fromRGBO(1, 205, 170, 170),
-                              shape: BoxShape.circle,
                             ),
-                            child: Column(
-
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children:[
-                                Text('Patients',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 91, 76,100),
-                                  ),
-                                ),
-                                Text('100+',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 91, 76,100),
-                                  ),
-                                )
-                              ],
-                            ),
-
-                          ),
-                          Container(
-                            height: 80,
-                            width: 80,
-                            decoration: BoxDecoration(
-                              color:Color.fromRGBO(1, 205, 170, 170),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Column(
-
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children:[
-                                Text('Experiences',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 91, 76,100),
-                                  ),
-                                ),
-                                Text('10y+',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 91, 76,100),
-                                  ),
-                                )
-                              ],
-                            ),
-
-                          ),
-                          Container(
-                            height: 80,
-                            width: 80,
-                            decoration: BoxDecoration(
-                              color:Color.fromRGBO(1, 205, 170, 170),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Column(
-
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children:[
-                                Text('Rateing',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 91, 76,100),
-                                  ),
-                                ),
-                                Text('4.5',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 91, 76,100),
-                                  ),
-                                )
-                              ],
-                            ),
-
-                          ),
-
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-
-                  ],
-                ),
+                  ]),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25.w),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Demograohy',
+                        style: TextStyle(
+                          color: Color.fromRGBO(1, 91, 76, 100),
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Text(
+                    'Dr. Ahmed Mohamed is a specialist in dental medicine',
+                    style: TextStyle(
+                      color: Color.fromRGBO(1, 91, 76, 100),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 55.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25.w),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Schedules',
+                        style: TextStyle(
+                          color: Color.fromRGBO(1, 91, 76, 100),
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ToggleSwitch(
+                      minWidth: 90.0.w,
+                      minHeight: 80.0.h,
+                      fontSize: 16.0.sp,
+                      initialLabelIndex: 0,
+                      activeBgColor: [
+                        Color.fromRGBO(1, 91, 76, 100),
+                      ],
+                      activeFgColor: Colors.white,
+                      inactiveBgColor: Colors.white,
+                      totalSwitches: 5,
+                      labels: [
+                        'Mon 11',
+                        'Thu 12',
+                        'Wed 13',
+                        'Thr 14',
+                        'Thu 12',
+                      ],
+                      onToggle: (index) {
+                        print('switched to: $index');
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25.w),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Choose time',
+                        style: TextStyle(
+                          color: Color.fromRGBO(1, 91, 76, 100),
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ToggleSwitch(
+                      minWidth: 90.0.w,
+                      minHeight: 55.0.h,
+                      fontSize: 16.0.sp,
+                      initialLabelIndex: 0,
+                      activeBgColor: [
+                        Color.fromRGBO(1, 91, 76, 100),
+                      ],
+                      activeFgColor: Colors.white,
+                      inactiveBgColor: Colors.white,
+                      totalSwitches: 3,
+                      labels: [
+                        '09:00 AM',
+                        '10:00 AM',
+                        '11:00 AM',
+                      ],
+                      onToggle: (index) {
+                        print('switched to: $index');
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: defaultButton(
+                          width: 260.w,
+                          text: 'Book Appointment',
+                          function: () {}),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                ]),
               ),
-            ),
-      ]
-        ),
-    SizedBox(height: 15,),
-    Padding(
-      padding: const EdgeInsets.only(left: 25),
-      child: Align(
-      alignment: Alignment.centerLeft,
-      child:
-            Text('Demograohy',
-              style: TextStyle(
-                color: Color.fromRGBO(1, 91, 76,100),
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-      ),
-    ),
-             SizedBox(height: 15,),
-          Text('Dr. Ahmed Mohamed is a specialist in dental medicine',
-            style: TextStyle(
-              color: Color.fromRGBO(1, 91, 76,100),
-            ),
-          ),
-
-
-          SizedBox(height: 90,),
-          Padding(
-            padding: const EdgeInsets.only(left: 25),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child:
-              Text('Schedules',
-                style: TextStyle(
-                  color: Color.fromRGBO(1, 91, 76,100),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-
-          SizedBox(height: 90,),
-          Padding(
-            padding: const EdgeInsets.only(left: 25),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child:
-              Text('Choose time',
-                style: TextStyle(
-                  color: Color.fromRGBO(1, 91, 76,100),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child:
-              defaultButton(
-                  width: 260,
-                  text: 'Book Appointment',
-                  function: () {
-                  }
-              ),
-            ),
-          ),
-          SizedBox(height: 15,),
-      ]
-    ),
-    );
+            ]),
+          );
+        });
   }
 }

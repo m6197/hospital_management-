@@ -323,14 +323,14 @@ class homescrren extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => BookingScreen()),
+          MaterialPageRoute(builder: (context) => BookingScreen(doctor)),
         );
       },
       child: Container(
         child: Padding(
           padding: EdgeInsets.only(right: 15.w, left: 15.w, top: 10.h),
           child: Container(
-            height: 115,
+            height: 115.h,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15.3.r),
@@ -346,11 +346,11 @@ class homescrren extends StatelessWidget {
             child: Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 10.w),
-                  child: Image.asset(
-                    'assets/image/Rectangle 52.png',
-                  ),
-                ),
+                    padding: EdgeInsets.only(left: 10.w),
+                    child: CircleAvatar(
+                      radius: 50.r,
+                      backgroundImage: NetworkImage(doctor.photo),
+                    )),
                 Padding(
                   padding: EdgeInsets.only(top: 31.h, left: 15.w),
                   child: Column(
