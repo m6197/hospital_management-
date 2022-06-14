@@ -34,7 +34,10 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => AuthCubit()),
-            BlocProvider(create: (context) => MainCubit()..getUserData())
+            BlocProvider(
+                create: (context) => MainCubit()
+                  ..getUserData()
+                  ..getDoctors())
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

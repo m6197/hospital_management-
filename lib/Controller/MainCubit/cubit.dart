@@ -16,6 +16,7 @@ class MainCubit extends Cubit<MainStates> {
   User? currentUser;
   bool loadingUserData = false;
   int currentIndex = 0;
+  bool loadingDoctors = false;
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
@@ -37,5 +38,11 @@ class MainCubit extends Cubit<MainStates> {
         emit(ErrorUserData());
       });
     }
+  }
+
+  void getDoctors() {
+    DioHelper.getData(url: GetDoctors).then((value) {
+      print(value.data);
+    });
   }
 }

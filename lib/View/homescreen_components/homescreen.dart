@@ -146,10 +146,14 @@ class homescrren extends StatelessWidget {
                       ),
                     ),
                   ),
-                  doctor(context),
-                  doctor(context),
-                  doctor(context),
-                  doctor(context),
+                  ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return doctor(context);
+                    },
+                  )
                 ],
               ),
             ),
