@@ -327,7 +327,7 @@ class homescrren extends StatelessWidget {
             height: 115,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(1.3.r),
+              borderRadius: BorderRadius.circular(15.3.r),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.3),
@@ -346,7 +346,7 @@ class homescrren extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 25.h, left: 15.w),
+                  padding: EdgeInsets.only(top: 31.h, left: 15.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
