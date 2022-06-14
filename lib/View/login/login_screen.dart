@@ -6,7 +6,6 @@ import 'package:nabdat/View/login/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../Controller/AuthCubit/states.dart';
-import '../../View/layout/navscrren.dart';
 import '../../View/shared/components/components.dart';
 import 'forget_password.dart';
 
@@ -21,19 +20,46 @@ class loginScreen extends StatelessWidget {
           var cubit = AuthCubit.GET(context);
           return Scaffold(
             body: SingleChildScrollView(
-              physics:
-                  ClampingScrollPhysics(parent: NeverScrollableScrollPhysics()),
+              physics: const NeverScrollableScrollPhysics(),
               child: Form(
-                key: formkey,
+                key: cubit.formkey_Login,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Image.asset(
-                        'assets/image/upper shape.png',
+                    Stack(children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Image.asset(
+                          'assets/image/upper shape.png',
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 130.h,
+                          left: 30.w,
+                        ),
+                        child: Text(
+                          'Welcome Back,',
+                          style: TextStyle(
+                            fontSize: 35.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 170.h,
+                          left: 30.w,
+                        ),
+                        child: Text(
+                          'Log In!',
+                          style: TextStyle(
+                            fontSize: 47.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ]),
                     SizedBox(
                       height: 40.h,
                     ),
@@ -86,68 +112,73 @@ class loginScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ForgetPassword()),
+                                    builder: (context) =>
+                                        const ForgetPassword()),
                               );
                             },
-                            child: const Text(
+                            child: Text(
                               'Forgot password?',
                               style: TextStyle(
                                 color: Color.fromRGBO(1, 205, 170, 100),
-                                fontSize: 12,
+                                fontSize: 12.sp,
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25.w),
-                      child: cubit.isLogging == true
-                          ? Container(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 25.w),
+                          child: defaultButton(
                               width: 160.w,
-                              alignment: Alignment.center,
-                              child: CircularProgressIndicator(
-                                  color: Color.fromRGBO(1, 205, 170, 70)),
-                            )
-                          : defaultButton(
-                              width: 160.w,
+                              isLoading: cubit.isLogging,
                               text: 'Log in',
                               function: () {
-                                if (formkey.currentState!.validate()) {
-                                  print(cubit.emailcontrol_Login.text);
-                                  print(cubit.passcontrol_Login.text);
+                                if (cubit.formkey_Login.currentState!
+                                    .validate()) {
                                   cubit.Login(context);
                                 }
                                 ;
                               }),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 100.h,
-                        left: 20.w,
-                      ),
-                      child: Row(
-                        children: [
-                          const Text(
-                            'If you don\'t have account',
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: 10.h,
+                            left: 20.w,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUpScreen()),
-                              );
-                            },
-                            child: const Text(
-                              'Sign Up Now',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: Color.fromRGBO(1, 205, 170, 70),
+                          child: Row(
+                            children: [
+                              const Text(
+                                'If you don\'t have account',
                               ),
-                            ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignUpScreen()),
+                                  );
+                                },
+                                child: const Text(
+                                  'Sign Up Now',
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Color.fromRGBO(1, 205, 170, 70),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Image.asset(
+                        'assets/image/down shape.png',
                       ),
                     ),
                   ],

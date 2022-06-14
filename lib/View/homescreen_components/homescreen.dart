@@ -59,7 +59,9 @@ class homescrren extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            cubit.currentUser!.name,
+                            cubit.currentUser == null
+                                ? ""
+                                : cubit.currentUser!.name,
                             style: TextStyle(
                               fontSize: 25.sp,
                               fontWeight: FontWeight.bold,

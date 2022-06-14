@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/AuthCubit/cubit.dart';
 import 'package:nabdat/Controller/AuthCubit/states.dart';
-import '../../View/layout/navscrren.dart';
 import '../../View/shared/components/components.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -12,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.white));
+        statusBarColor: Colors.transparent));
     return BlocConsumer<AuthCubit, AuthStates>(
         listener: (context, states) {},
         builder: (context, states) {
@@ -20,8 +19,6 @@ class SignUpScreen extends StatelessWidget {
           return Scaffold(
             body: Center(
               child: SingleChildScrollView(
-                physics: ClampingScrollPhysics(
-                    parent: NeverScrollableScrollPhysics()),
                 child: Form(
                   key: cubit.formkey_Signup,
                   child: Padding(
@@ -34,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
                             'Hello,',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 25.sp,
+                              fontSize: 20.sp,
                             ),
                           ),
                         ),
@@ -42,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
                           'Sign Up!',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 30.sp,
+                            fontSize: 22.sp,
                           ),
                         ),
                         SizedBox(
@@ -77,6 +74,20 @@ class SignUpScreen extends StatelessWidget {
                           height: 15.h,
                         ),
                         defaultformfiled(
+                            controller: cubit.emailcontrol_Signup,
+                            label: 'Phone',
+                            prefix: Icons.email,
+                            type: TextInputType.emailAddress,
+                            validate: (value) {
+                              if (value!.isEmpty) {
+                                return 'Enter your Phone Number';
+                              }
+                              return null;
+                            }),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        defaultformfiled(
                           controller: cubit.passcontrol_Signup,
                           type: TextInputType.emailAddress,
                           isPassword: cubit.ispassword_Signup,
@@ -96,46 +107,25 @@ class SignUpScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(
-                          height: 15.h,
-                        ),
-                        defaultformfiled(
-                            controller: cubit.phonecontroller_Signup,
-                            label: 'Phone',
-                            prefix: Icons.call,
-                            type: TextInputType.emailAddress,
-                            validate: (value) {
-                              if (value!.isEmpty) {
-                                return 'Enter your Phone Number';
-                              }
-                              return null;
-                            }),
-                        SizedBox(
                           height: 25.h,
                         ),
-                        cubit.isLogging == true
-                            ? Center(
-                                child: CircularProgressIndicator(
-                                    color: Color.fromRGBO(1, 205, 170, 100)),
-                              )
-                            : defaultButton(
-                                width: 160.w,
-                                text: 'Sign up',
-                                function: () {
-                                  if (cubit.formkey_Signup.currentState!
-                                      .validate()) {
-                                    print(cubit.Usercontrol_Signup.text);
-                                    print(cubit.emailcontrol_Signup.text);
-                                    print(cubit.passcontrol_Signup.text);
-                                    cubit.Signup(context);
-                                  }
-                                  ;
-                                }),
+                        defaultButton(
+                            width: 160.w,
+                            isLoading: cubit.isLogging,
+                            text: 'Sing up',
+                            function: () {
+                              if (cubit.formkey_Signup.currentState!
+                                  .validate()) {
+                                cubit.Signup(context);
+                              }
+                              ;
+                            }),
                         Padding(
-                          padding: const EdgeInsets.only(top: 60),
+                          padding: EdgeInsets.only(top: 60.h),
                           child: Text(
                             'or sign up with',
                             style: TextStyle(
-                              fontSize: 16.h,
+                              fontSize: 16.sp,
                             ),
                           ),
                         ),
@@ -150,7 +140,7 @@ class SignUpScreen extends StatelessWidget {
                                 icon: Icon(
                                   Icons.facebook,
                                   color: Colors.blue,
-                                  size: 36.r,
+                                  size: 33.r,
                                 ),
                                 onPressed: () {
                                   //statements
@@ -158,21 +148,22 @@ class SignUpScreen extends StatelessWidget {
                                 },
                               ),
                               SizedBox(
-                                width: 35.h,
+                                width: 35.w,
                               ),
                               IconButton(
                                 icon: Image.asset(
                                   'assets/image/google-icon.png',
-                                  height: 33.r,
                                   width: 33.r,
+                                  height: 33.r,
                                 ),
+                                iconSize: 33.r,
                                 onPressed: () {
                                   //statements
                                   print('IconButton is pressed');
                                 },
                               ),
                               SizedBox(
-                                width: 35.h,
+                                width: 35.w,
                               ),
                               IconButton(
                                 icon: Icon(

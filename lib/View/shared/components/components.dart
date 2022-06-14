@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget defaultButton({
-  double width: double.infinity,
-  Color background = Colors.blue,
-  required VoidCallback function,
-  required String text,
-}) =>
+Widget defaultButton(
+        {double width: double.infinity,
+        Color background = Colors.blue,
+        required VoidCallback function,
+        required String text,
+        bool isLoading = false}) =>
     Container(
       width: width,
       child: ElevatedButton(
@@ -20,12 +20,20 @@ Widget defaultButton({
           )),
         ),
         onPressed: function,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
+        child: isLoading == true
+            ? Container(
+                height: 30.h,
+                width: 30.h,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              )
+            : Text(
+                text,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
       ),
     );
 
