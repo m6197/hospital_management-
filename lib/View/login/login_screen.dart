@@ -41,7 +41,7 @@ class loginScreen extends StatelessWidget {
                         child: Text(
                           'Welcome Back,',
                           style: TextStyle(
-                            fontSize: 35.sp,
+                            fontSize: 32.sp,
                             color: Colors.white,
                           ),
                         ),
