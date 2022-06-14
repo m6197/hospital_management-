@@ -153,14 +153,14 @@ class BookingScreen extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Patients',
+                                          'Price',
                                           style: TextStyle(
                                             color:
                                                 Color.fromARGB(200, 1, 91, 76),
                                           ),
                                         ),
                                         Text(
-                                          '100+',
+                                          doctor.price.toString() + ' LE',
                                           style: TextStyle(
                                             color:
                                                 Color.fromARGB(200, 1, 91, 76),
@@ -323,26 +323,26 @@ class BookingScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: ToggleSwitch(
-                      minWidth: 90.0.w,
-                      minHeight: 55.0.h,
-                      fontSize: 16.0.sp,
-                      initialLabelIndex: 0,
-                      activeBgColor: [
-                        Color.fromRGBO(1, 91, 76, 100),
-                      ],
-                      activeFgColor: Colors.white,
-                      inactiveBgColor: Colors.white,
-                      totalSwitches: 3,
-                      labels: [
-                        '09:00 AM',
-                        '10:00 AM',
-                        '11:00 AM',
-                      ],
-                      onToggle: (index) {
-                        print('switched to: $index');
-                      },
-                    ),
+                    child: doctor.schedule.fri_time.isEmpty
+                        ? Center(
+                            child: Text('No available times in selected day'),
+                          )
+                        : ToggleSwitch(
+                            minWidth: 90.0.w,
+                            minHeight: 55.0.h,
+                            fontSize: 16.0.sp,
+                            initialLabelIndex: 0,
+                            activeBgColor: [
+                              Color.fromRGBO(1, 91, 76, 100),
+                            ],
+                            activeFgColor: Colors.white,
+                            inactiveBgColor: Colors.white,
+                            totalSwitches: doctor.schedule.mon_time.length,
+                            labels: doctor.schedule.mon_time,
+                            onToggle: (index) {
+                              print('switched to: $index');
+                            },
+                          ),
                   ),
                   Expanded(
                     child: Align(

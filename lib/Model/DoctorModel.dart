@@ -21,13 +21,13 @@ class Doctor {
 }
 
 class Schedule {
-  List sat_time = [];
-  List sun_time = [];
-  List mon_time = [];
-  List tue_time = [];
-  List wed_time = [];
-  List fri_time = [];
-  List thu_time = [];
+  List<String> sat_time = [];
+  List<String> sun_time = [];
+  List<String> mon_time = [];
+  List<String> tue_time = [];
+  List<String> wed_time = [];
+  List<String> fri_time = [];
+  List<String> thu_time = [];
 
   Schedule.fromJson(Map data) {
     if (data.isNotEmpty) {
@@ -41,7 +41,7 @@ class Schedule {
     }
   }
 
-  List splitTime(String? time) {
+  List<String> splitTime(String? time) {
     return time == null ? [] : time.split(' ');
   }
 }

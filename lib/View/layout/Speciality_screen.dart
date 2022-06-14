@@ -1,5 +1,6 @@
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/View//layoutComponents/bones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,149 +19,127 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
         toolbarHeight: 0,
         elevation: 0,
       ),
-      body: Column(children: [
-        Container(
-          width: double.infinity,
-          height: 150.h,
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(1, 205, 170, 70),
-            borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(20.0.r),
-              bottomLeft: Radius.circular(20.0.r),
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  )),
-              Center(
-                child: Text(
-                  'Speciality',
-                  style: TextStyle(
-                    fontSize: 32.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Container(
+            width: double.infinity,
+            height: 150.h,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(1, 205, 170, 70),
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(20.0.r),
+                bottomLeft: Radius.circular(20.0.r),
               ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //inverted selection button bar
-            AnimatedButtonBar(
-              backgroundColor: Color.fromRGBO(1, 205, 170, 190),
-              foregroundColor: Color.fromRGBO(1, 205, 170, 120),
-              radius: 25.0,
-              padding: const EdgeInsets.all(16.0),
-              invertedSelection: false,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ButtonBarEntry(
-                  onTap: () => () {},
-                  child: Text(
-                    'All',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                ButtonBarEntry(
-                    onTap: () => setState(() {}),
-                    child: Text(
-                      'Avaliable Today',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
                     )),
-                ButtonBarEntry(
-                  onTap: () => print('Third item tapped'),
+                Center(
                   child: Text(
-                    'Cancel',
+                    'Speciality',
                     style: TextStyle(
-                      color: Colors.black,
+                      fontSize: 32.sp,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //inverted selection button bar
+              AnimatedButtonBar(
+                backgroundColor: Color.fromRGBO(1, 205, 170, 190),
+                foregroundColor: Color.fromRGBO(1, 205, 170, 120),
+                radius: 25.0.r,
+                padding: EdgeInsets.all(16.0),
+                invertedSelection: false,
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(115, 50),
-                      maximumSize: const Size(115, 50),
-                      primary: Color.fromRGBO(1, 205, 170, 120),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0),
-                      ),
-                    ),
-                    child: Text("Bones"),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const BonesScreen()),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 13,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(115, 50),
-                      maximumSize: const Size(115, 50),
-                      primary: Color.fromRGBO(1, 205, 170, 120),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0),
-                      ),
-                    ),
+                  ButtonBarEntry(
+                    onTap: () => () {},
                     child: Text(
-                      "Considerration",
+                      'All',
                       style: TextStyle(
-                        fontSize: 12.5,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: () {},
                   ),
-                  SizedBox(
-                    width: 13,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(115, 50),
-                      maximumSize: const Size(115, 50),
-                      primary: Color.fromRGBO(1, 205, 170, 120),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0),
+                  ButtonBarEntry(
+                      onTap: () => setState(() {}),
+                      child: Text(
+                        'Avaliable Today',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )),
+                  ButtonBarEntry(
+                    onTap: () => print('Third item tapped'),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    child: Text("Skin Desies"),
-                    onPressed: () {},
                   ),
                 ],
               ),
-            ),
-          ],
+              Padding(
+                  padding: EdgeInsets.all(10.0.r),
+                  child: GridView.builder(
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: (6 / 2).h,
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 20),
+                      itemCount: MainCubit.GET(context).specialize.length,
+                      itemBuilder: (context, index) {
+                        return SpecialityCard(
+                            MainCubit.GET(context).specialize[index]);
+                      })),
+            ],
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget SpecialityCard(String text) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(105, 50),
+        maximumSize: Size(110, 50),
+        primary: Color.fromRGBO(1, 205, 170, 120),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0.r),
         ),
-      ]),
+      ),
+      child: Center(
+          child: Text(
+        text,
+        textAlign: TextAlign.center,
+      )),
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BonesScreen(text)),
+      ),
     );
   }
 }

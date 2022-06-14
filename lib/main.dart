@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) => MainCubit()
                   ..getUserData()
-                  ..getDoctors())
+                  ..getDoctors()
+                  ..getAvailableAnalysis())
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

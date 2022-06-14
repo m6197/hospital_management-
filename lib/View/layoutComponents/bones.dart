@@ -1,42 +1,57 @@
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
-
+import 'package:nabdat/Model/DoctorModel.dart';
 import '../layout/Booking_Screen.dart';
 import '../shared/components/components.dart';
 
-class BonesScreen extends StatefulWidget {
-  const BonesScreen({Key? key}) : super(key: key);
+class BonesScreen extends StatelessWidget {
+  final String speciality;
 
-  @override
-  State<BonesScreen> createState() => _BonesScreenState();
-}
-
-class _BonesScreenState extends State<BonesScreen> {
+  BonesScreen(this.speciality);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(1, 205, 170, 70),
+        toolbarHeight: 0,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
             width: double.infinity,
-            height: 150,
+            height: 150.h,
             decoration: BoxDecoration(
               color: Color.fromRGBO(1, 205, 170, 70),
               borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(20.0),
-                bottomLeft: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0.r),
+                bottomLeft: Radius.circular(20.0.r),
               ),
             ),
-            child: Center(
-              child: Text(
-                'Bones',
-                style: TextStyle(
-                  fontSize: 32,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    )),
+                Center(
+                  child: Text(
+                    speciality,
+                    style: TextStyle(
+                      fontSize: 32.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
           SizedBox(
@@ -54,7 +69,7 @@ class _BonesScreenState extends State<BonesScreen> {
                 invertedSelection: false,
                 children: [
                   ButtonBarEntry(
-                    onTap: () => setState(() {}),
+                    onTap: () {},
                     child: Text(
                       'All',
                       style: TextStyle(
@@ -64,7 +79,7 @@ class _BonesScreenState extends State<BonesScreen> {
                     ),
                   ),
                   ButtonBarEntry(
-                      onTap: () => setState(() {}),
+                      onTap: () {},
                       child: Text(
                         'Avaliable Today',
                         style: TextStyle(
@@ -112,372 +127,116 @@ class _BonesScreenState extends State<BonesScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(13),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 3,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 50,
-                          top: 20,
-                        ),
-                        child: Image.asset(
-                          'assets/image/Rectangle 52.png',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25, left: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Dr. Ahmed Mohamed',
-                              style: TextStyle(
-                                color: Color.fromRGBO(1, 205, 170, 50),
-                              ),
-                            ),
-                            Text(
-                              'Dental Specialis',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color.fromRGBO(1, 205, 170, 120),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('assets/image/Path 52.png'),
-                                Text(
-                                  '4.5',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 50,
-                                ),
-                                Text(
-                                  '50 Reviews',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  defaultButton(
-                    width: 280,
-                    text: 'Book Appointment',
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BookingScreen(
-                                MainCubit.GET(context).doctors[0])),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(13),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 3,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 50,
-                          top: 20,
-                        ),
-                        child: Image.asset(
-                          'assets/image/Rectangle 52.png',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25, left: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Dr. Ahmed Mohamed',
-                              style: TextStyle(
-                                color: Color.fromRGBO(1, 205, 170, 50),
-                              ),
-                            ),
-                            Text(
-                              'Dental Specialis',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color.fromRGBO(1, 205, 170, 120),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('assets/image/Path 52.png'),
-                                Text(
-                                  '4.5',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 50,
-                                ),
-                                Text(
-                                  '50 Reviews',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  defaultButton(
-                    width: 280,
-                    text: 'Book Appointment',
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BookingScreen(
-                                MainCubit.GET(context).doctors[0])),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(13),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 3,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 50,
-                          top: 20,
-                        ),
-                        child: Image.asset(
-                          'assets/image/Rectangle 52.png',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25, left: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Dr. Ahmed Mohamed',
-                              style: TextStyle(
-                                color: Color.fromRGBO(1, 205, 170, 50),
-                              ),
-                            ),
-                            Text(
-                              'Dental Specialis',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color.fromRGBO(1, 205, 170, 120),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('assets/image/Path 52.png'),
-                                Text(
-                                  '4.5',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 50,
-                                ),
-                                Text(
-                                  '50 Reviews',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  defaultButton(
-                    width: 280,
-                    text: 'Book Appointment',
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BookingScreen(
-                                MainCubit.GET(context).doctors[0])),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(13),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 3,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 50,
-                          top: 20,
-                        ),
-                        child: Image.asset(
-                          'assets/image/Rectangle 52.png',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25, left: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Dr. Ahmed Mohamed',
-                              style: TextStyle(
-                                color: Color.fromRGBO(1, 205, 170, 50),
-                              ),
-                            ),
-                            Text(
-                              'Dental Specialis',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color.fromRGBO(1, 205, 170, 120),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('assets/image/Path 52.png'),
-                                Text(
-                                  '4.5',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 50,
-                                ),
-                                Text(
-                                  '50 Reviews',
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(1, 205, 170, 50),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  defaultButton(
-                    width: 280,
-                    text: 'Book Appointment',
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BookingScreen(
-                                MainCubit.GET(context).doctors[0])),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+          allDoctors(MainCubit.GET(context).doctors)
         ]),
       ),
+    );
+  }
+
+  Widget doctor(context, Doctor doctorModel) {
+    return Padding(
+      padding: EdgeInsets.all(15.0),
+      child: Container(
+        height: 160,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(13),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 3,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 50,
+                    top: 20,
+                  ),
+                  child: CircleAvatar(
+                    radius: 50.r,
+                    backgroundImage: NetworkImage(doctorModel.photo),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 25, left: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Dr ' + doctorModel.name,
+                        style: TextStyle(
+                          color: Color.fromARGB(200, 1, 91, 76),
+                        ),
+                      ),
+                      Text(
+                        doctorModel.specialize + ' Specialist',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color.fromARGB(200, 1, 91, 76),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset('assets/image/Path 52.png'),
+                          Text(
+                            '${doctorModel.rate == null ? '' : doctorModel.rate}',
+                            style: TextStyle(
+                              color: Color.fromARGB(200, 1, 91, 76),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 50,
+                          ),
+                          Text(
+                            '50 Reviews',
+                            style: TextStyle(
+                              color: Color.fromARGB(200, 1, 91, 76),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            defaultButton(
+              width: 280,
+              text: 'Book Appointment',
+              function: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BookingScreen(doctorModel)),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget allDoctors(List<Doctor> doctors) {
+    return ListView.builder(
+      itemCount: doctors.length,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        return doctors[index].specialize != speciality
+            ? Container()
+            : doctor(context, doctors[index]);
+      },
     );
   }
 }

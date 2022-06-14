@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
+import 'package:nabdat/Model/AnalysisModel.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:nabdat/Model/UserModel.dart';
 import 'package:nabdat/Shared/network/local/chache_helper.dart';
@@ -9,7 +10,6 @@ import '../../Shared/network/remote/dio_helper.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainInitState());
-
   static MainCubit GET(context) => BlocProvider.of(context);
 
   //--------------Variables--------------//
@@ -20,6 +20,8 @@ class MainCubit extends Cubit<MainStates> {
   bool loadingDoctors = false;
   List<Doctor> doctors = [];
   DateTime date = DateTime.now();
+  List<String> specialize = [];
+  List<Analysis> analysis = [];
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
@@ -50,6 +52,11 @@ class MainCubit extends Cubit<MainStates> {
       print(value.data);
       value.data.forEach((i) {
         doctors.add(Doctor.fromJson(i));
+        if (!(specialize.contains(i['specialize']))) {
+          specialize.add(i['specialize']);
+        }
+        specialize.remove('Analysis');
+        specialize.remove('Radiology');
       });
       print(doctors.length);
       loadingDoctors = false;
@@ -65,6 +72,16 @@ class MainCubit extends Cubit<MainStates> {
     List<Doctor> availableDoctors = [];
     String day = getDay(date.weekday);
     doctors.forEach((element) {});
+  }
+
+  void getAvailableAnalysis() {
+    DioHelper.getData(url: AvailableAnalysis).then((value) {
+      value.data.forEach((i) {
+        analysis.add(Analysis.froJson(i));
+      });
+    }).catchError((onError) {
+      print(onError.response.data);
+    });
   }
 }
 

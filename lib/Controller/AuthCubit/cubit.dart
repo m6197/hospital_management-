@@ -54,6 +54,9 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(LoginSuccesState());
       MainCubit.GET(context).token = value.data['data']['token'];
       MainCubit.GET(context).getUserData();
+      MainCubit.GET(context).getAvailableAnalysis();
+      MainCubit.GET(context).getDoctors();
+
       emailcontrol_Login.text = "";
       passcontrol_Login.text = "";
     }).catchError((e) {
