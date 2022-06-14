@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
+import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:nabdat/View/layout/Analysis.dart';
 import 'package:nabdat/View/layout/Booking_Screen.dart';
 import 'package:nabdat/View/layout/Radiolgy_Screen.dart';
@@ -146,14 +147,19 @@ class homescrren extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return doctor(context);
-                    },
-                  )
+                  cubit.loadingDoctors
+                      ? Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: cubit.doctors.length,
+                          itemBuilder: (context, index) {
+                            return cubit.doctors[index].rate != null &&
+                                    cubit.doctors[index].rate! >= 4.5
+                                ? doctor(context, cubit.doctors[index])
+                                : Container();
+                          },
+                        )
                 ],
               ),
             ),
@@ -312,7 +318,7 @@ class homescrren extends StatelessWidget {
     );
   }
 
-  Widget doctor(context) {
+  Widget doctor(context, Doctor doctor) {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -351,14 +357,14 @@ class homescrren extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Dr. Ahmed Mohamed',
+                        'Dr. ' + doctor.name,
                         style: TextStyle(
                           color: Color.fromARGB(200, 1, 91, 76),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        'Dental Specialis',
+                        doctor.specialize + ' Specialis',
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: Color.fromARGB(200, 1, 91, 76),
@@ -371,7 +377,7 @@ class homescrren extends StatelessWidget {
                         children: [
                           Image.asset('assets/image/Path 52.png'),
                           Text(
-                            '4.5',
+                            '${doctor.rate}',
                             style: TextStyle(
                               color: Color.fromARGB(200, 1, 91, 76),
                               fontWeight: FontWeight.bold,

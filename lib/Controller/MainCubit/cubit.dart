@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
+import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:nabdat/Model/UserModel.dart';
 import 'package:nabdat/Shared/network/local/chache_helper.dart';
 import 'package:nabdat/Shared/network/remote/end_points.dart';
@@ -17,6 +18,7 @@ class MainCubit extends Cubit<MainStates> {
   bool loadingUserData = false;
   int currentIndex = 0;
   bool loadingDoctors = false;
+  List<Doctor> doctors = [];
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
@@ -41,8 +43,20 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   void getDoctors() {
+    loadingDoctors = true;
+    emit(LoadingDoctorData());
     DioHelper.getData(url: GetDoctors).then((value) {
       print(value.data);
+      value.data.forEach((i) {
+        doctors.add(Doctor.fromJson(i));
+      });
+      print(doctors.length);
+      loadingDoctors = false;
+      emit(SuccessDoctorData());
+    }).catchError((onError) {
+      print(onError);
+      loadingDoctors = false;
+      emit(ErrorDoctorData());
     });
   }
 }
