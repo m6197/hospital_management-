@@ -35,7 +35,7 @@ class homescrren extends StatelessWidget {
                             Text(
                               'Hello',
                               style: TextStyle(
-                                fontSize: 12.sp,
+                                fontSize: 14.sp,
                               ),
                             ),
                             Text(
@@ -44,6 +44,7 @@ class homescrren extends StatelessWidget {
                                   : '',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
                               ),
                             ),
                           ],
@@ -64,7 +65,7 @@ class homescrren extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 15.h,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,7 +219,7 @@ class homescrren extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(15.0.r),
       child: Container(
-        height: 110,
+        height: 120.h,
         decoration: BoxDecoration(
           color: Color.fromARGB(200, 1, 205, 170),
           borderRadius: BorderRadius.circular(13.r),
@@ -245,10 +246,11 @@ class homescrren extends StatelessWidget {
                       'Dr.Salma Emad',
                       style: TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'Dentel Specialis',
+                      ' Dentel Specialis',
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -263,7 +265,7 @@ class homescrren extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10.w),
               child: Container(
-                height: 30.h,
+                height: 40.h,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(120, 2, 143, 119),
                   borderRadius: BorderRadius.circular(5.r),
