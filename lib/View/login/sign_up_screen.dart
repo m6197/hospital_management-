@@ -74,7 +74,7 @@ class SignUpScreen extends StatelessWidget {
                           height: 15.h,
                         ),
                         defaultformfiled(
-                            controller: cubit.emailcontrol_Signup,
+                            controller: cubit.phonecontroller_Signup,
                             label: 'Phone',
                             prefix: Icons.email,
                             type: TextInputType.emailAddress,
