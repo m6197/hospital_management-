@@ -22,10 +22,17 @@ class MainCubit extends Cubit<MainStates> {
   DateTime date = DateTime.now();
   List<String> specialize = [];
   List<Analysis> analysis = [];
+  int? SelectedDoctorDateIndex = 0;
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
     emit(ChangeNavBarState());
+  }
+
+  void ChangeSelectedDoctorDateIndex(int? index) {
+    SelectedDoctorDateIndex = index;
+    print(SelectedDoctorDateIndex);
+    emit(ChangeSelectedDoctorDateIndexState());
   }
 
   void getUserData() {
@@ -70,7 +77,6 @@ class MainCubit extends Cubit<MainStates> {
 
   void getAvailableDoctors(String day) {
     List<Doctor> availableDoctors = [];
-    String day = getDay(date.weekday);
     doctors.forEach((element) {});
   }
 
@@ -83,25 +89,34 @@ class MainCubit extends Cubit<MainStates> {
       print(onError.response.data);
     });
   }
-}
 
-String getDay(int day) {
-  switch (day) {
-    case 1:
-      return 'mon_time';
-    case 2:
-      return 'tue_time';
-    case 3:
-      return 'wed_time';
-    case 4:
-      return 'thu_time';
-    case 5:
-      return 'fri_time';
-    case 6:
-      return 'sat_time';
-    case 7:
-      return 'sun_time';
-    default:
-      return '';
+  List availableDates(Doctor doctor) {
+    return [
+      [date.day, getDaySchedule(date.weekday, doctor)],
+      [date.day + 1, getDaySchedule(date.weekday + 1, doctor)],
+      [date.day + 2, getDaySchedule(date.weekday + 2, doctor)],
+      [date.day + 3, getDaySchedule(date.weekday + 3, doctor)],
+    ];
+  }
+
+  List? getDaySchedule(int day, Doctor doctor) {
+    switch (day) {
+      case 1:
+        return [doctor.schedule.mon_time, "Mon"];
+      case 2:
+        return [doctor.schedule.tue_time, "Tue"];
+      case 3:
+        return [doctor.schedule.wed_time, "Wed"];
+      case 4:
+        return [doctor.schedule.thu_time, "Thu"];
+      case 5:
+        return [doctor.schedule.fri_time, "Fri"];
+      case 6:
+        return [doctor.schedule.sat_time, "Sat"];
+      case 7:
+        return [doctor.schedule.sun_time, "Sun"];
+      default:
+        return null;
+    }
   }
 }

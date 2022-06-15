@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
+import 'package:nabdat/OrderDetails.dart';
 import 'package:nabdat/View/layout/Analysis.dart';
 import 'package:nabdat/View/layout/Booking_Screen.dart';
 import 'package:nabdat/View/layout/Radiolgy_Screen.dart';
@@ -133,7 +134,7 @@ class homescrren extends StatelessWidget {
                       ),
                     ],
                   ),
-                  appointment(),
+                  appointment(context),
                   Padding(
                     padding: EdgeInsets.only(left: 16.w, top: 10.h),
                     child: Align(
@@ -215,106 +216,112 @@ class homescrren extends StatelessWidget {
     );
   }
 
-  Widget appointment() {
-    return Padding(
-      padding: EdgeInsets.all(15.0.r),
-      child: Container(
-        height: 120.h,
-        decoration: BoxDecoration(
-          color: Color.fromARGB(200, 1, 205, 170),
-          borderRadius: BorderRadius.circular(13.r),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 20.w,
-                ),
-                CircleAvatar(
-                  radius: 25.0.r,
-                  backgroundImage: NetworkImage(
-                      'https://www.allaboutbirds.org/guide/assets/photo/303618951-480px.jpg'),
-                ),
-                SizedBox(
-                  width: 15.w,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'Dr.Salma Emad',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      ' Dentel Specialis',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 14.h,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10.w),
-              child: Container(
-                height: 40.h,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(120, 2, 143, 119),
-                  borderRadius: BorderRadius.circular(5.r),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget appointment(context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => OrderDetails()));
+      },
+      child: Padding(
+        padding: EdgeInsets.all(15.0.r),
+        child: Container(
+          height: 120.h,
+          decoration: BoxDecoration(
+            color: Color.fromARGB(200, 1, 205, 170),
+            borderRadius: BorderRadius.circular(13.r),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20.w,
+                  ),
+                  CircleAvatar(
+                    radius: 25.0.r,
+                    backgroundImage: NetworkImage(
+                        'https://www.allaboutbirds.org/guide/assets/photo/303618951-480px.jpg'),
+                  ),
+                  SizedBox(
+                    width: 15.w,
+                  ),
+                  Column(
                     children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.calendar_month_outlined,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            'Monday,May 5',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'Dr.Salma Emad',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.access_time,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            '11:00AM-12:00AM',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        ' Dentel Specialis',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
+                ],
+              ),
+              SizedBox(
+                height: 14.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10.w),
+                child: Container(
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(120, 2, 143, 119),
+                    borderRadius: BorderRadius.circular(5.r),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.calendar_month_outlined,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(
+                              'Monday,May 5',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(
+                              '11:00AM-12:00AM',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

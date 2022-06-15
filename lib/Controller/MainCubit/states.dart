@@ -15,3 +15,5 @@ class ErrorDoctorData extends MainStates {}
 class SuccessDoctorData extends MainStates {}
 
 class LoadingDoctorData extends MainStates {}
+
+class ChangeSelectedDoctorDateIndexState extends MainStates {}

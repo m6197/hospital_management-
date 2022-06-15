@@ -2,7 +2,6 @@ import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/View//layoutComponents/bones.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SpecialityScreen extends StatefulWidget {

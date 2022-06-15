@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../View/shared/components/components.dart';
 
@@ -10,41 +11,62 @@ class PersonalData extends StatefulWidget {
 }
 
 class _PersonalDataState extends State<PersonalData> {
-  @override
   var formkey = GlobalKey<FormState>();
   var namecontrol = TextEditingController();
   var emailcontrol = TextEditingController();
   var phonecontrol = TextEditingController();
   var datecontrol = TextEditingController();
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(1, 205, 170, 70),
+        toolbarHeight: 0,
+        elevation: 0,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverFillRemaining(
               hasScrollBody: false,
               child: Form(
+                key: formkey,
                 child: Column(
                   children: [
                     Container(
                       width: double.infinity,
-                      height: 150,
+                      height: 150.h,
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(1, 205, 170, 70),
                         borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0),
+                          bottomRight: Radius.circular(20.0.r),
+                          bottomLeft: Radius.circular(20.0.r),
                         ),
                       ),
-                      child: Center(
-                        child: Text(
-                          'Personal Data',
-                          style: TextStyle(
-                            fontSize: 32,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              )),
+                          Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.symmetric(horizontal: 5.w),
+                            child: Text(
+                              "Personal Data",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 32.sp,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                     SizedBox(

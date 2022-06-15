@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +5,6 @@ import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-
 
 import '../shared/components/components.dart';
 
@@ -19,10 +17,11 @@ class BookingScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = MainCubit.GET(context);
+          List availableTimes = cubit.availableDates(doctor);
           return Scaffold(
             body: CustomScrollView(slivers: [
               SliverFillRemaining(
-                hasScrollBody: false,
+                hasScrollBody: true,
                 child: Column(children: [
                   Stack(children: [
                     Container(
@@ -286,22 +285,20 @@ class BookingScreen extends StatelessWidget {
                       minWidth: 90.0.w,
                       minHeight: 80.0.h,
                       fontSize: 16.0.sp,
-                      initialLabelIndex: 0,
+                      initialLabelIndex: cubit.SelectedDoctorDateIndex,
                       activeBgColor: [
                         Color.fromRGBO(1, 91, 76, 100),
                       ],
                       activeFgColor: Colors.white,
                       inactiveBgColor: Colors.white,
-                      totalSwitches: 5,
-                      labels: [
-                        'Mon 11',
-                        'Thu 12',
-                        'Wed 13',
-                        'Thr 14',
-                        'Thu 12',
-                      ],
+                      totalSwitches: 4,
+                      labels: List.generate(4, (index) {
+                        return availableTimes[index][0].toString() +
+                            " " +
+                            availableTimes[index][1][1].toString();
+                      }),
                       onToggle: (index) {
-                        print('switched to: $index');
+                        cubit.ChangeSelectedDoctorDateIndex(index);
                       },
                     ),
                   ),
@@ -324,26 +321,71 @@ class BookingScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: doctor.schedule.fri_time.isEmpty
+                    child: availableTimes[cubit.SelectedDoctorDateIndex!][1][0]
+                            .isEmpty
                         ? Center(
                             child: Text('No available times in selected day'),
                           )
-                        : ToggleSwitch(
-                            minWidth: 90.0.w,
-                            minHeight: 55.0.h,
-                            fontSize: 16.0.sp,
-                            initialLabelIndex: 0,
-                            activeBgColor: [
-                              Color.fromRGBO(1, 91, 76, 100),
-                            ],
-                            activeFgColor: Colors.white,
-                            inactiveBgColor: Colors.white,
-                            totalSwitches: doctor.schedule.mon_time.length,
-                            labels: doctor.schedule.mon_time,
-                            onToggle: (index) {
-                              print('switched to: $index');
-                            },
-                          ),
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            itemCount:
+                                (availableTimes[cubit.SelectedDoctorDateIndex!]
+                                                [1][0]
+                                            .length /
+                                        4)
+                                    .ceil(),
+                            itemBuilder: (context, item) {
+                              return Center(
+                                child: ToggleSwitch(
+                                  minWidth: 90.0.w,
+                                  minHeight: 55.0.h,
+                                  fontSize: 16.0.sp,
+                                  initialLabelIndex: null,
+                                  activeBgColor: [
+                                    Color.fromRGBO(1, 91, 76, 100),
+                                  ],
+                                  activeFgColor: Colors.white,
+                                  inactiveBgColor: Colors.white,
+                                  totalSwitches: availableTimes[cubit
+                                                      .SelectedDoctorDateIndex!]
+                                                  [1][0]
+                                              .length >
+                                          4
+                                      ? (4 -
+                                              (availableTimes[cubit
+                                                              .SelectedDoctorDateIndex!]
+                                                          [1][0]
+                                                      .length *
+                                                  item))
+                                          .toInt()
+                                          .abs()
+                                      : availableTimes[cubit
+                                              .SelectedDoctorDateIndex!][1][0]
+                                          .length,
+                                  labels: List.generate(
+                                      availableTimes[cubit.SelectedDoctorDateIndex!]
+                                                      [1][0]
+                                                  .length >
+                                              4
+                                          ? ((4 -
+                                                  (availableTimes[cubit.SelectedDoctorDateIndex!]
+                                                              [1][0]
+                                                          .length *
+                                                      item)))
+                                              .toInt()
+                                              .abs()
+                                          : availableTimes[cubit.SelectedDoctorDateIndex!]
+                                                  [1][0]
+                                              .length,
+                                      (index) =>
+                                          availableTimes[cubit.SelectedDoctorDateIndex!]
+                                              [1][0][index + (item * 4)]),
+                                  onToggle: (index) {
+                                    print('switched to: $index');
+                                  },
+                                ),
+                              );
+                            }),
                   ),
                   Expanded(
                     child: Align(
