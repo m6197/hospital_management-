@@ -3,10 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Model/AnalysisModel.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:nabdat/View/layoutComponents/Coved%2019.dart';
-
 
 class Analysis_screen extends StatelessWidget {
   @override
@@ -86,16 +84,6 @@ class Analysis_screen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       )),
-                  ButtonBarEntry(
-                    onTap: () => print('Third item tapped'),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
                 ],
               ),
               Padding(
@@ -138,7 +126,10 @@ class Analysis_screen extends StatelessWidget {
       onPressed: () => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => CovedScreen(analysis)),
-      ),
+      ).then((value) {
+        MainCubit.GET(context).timeSelectedIndex = null;
+        MainCubit.GET(context).SelectedDoctorDateIndex = 0;
+      }),
     );
   }
 }

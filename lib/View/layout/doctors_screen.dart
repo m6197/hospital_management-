@@ -91,16 +91,6 @@ class Doctor_screen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             )),
-                        ButtonBarEntry(
-                          onTap: () => print('Third item tapped'),
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ],
@@ -224,7 +214,11 @@ class Doctor_screen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => BookingScreen(doctorModel)),
-                );
+                ).then((value) {
+                  MainCubit.GET(context).timeSelectedIndex = null;
+                  MainCubit.GET(context).SelectedDoctorDateIndex = 0;
+                });
+                ;
               },
             ),
           ],

@@ -329,59 +329,33 @@ class BookingScreen extends StatelessWidget {
                         : ListView.builder(
                             shrinkWrap: true,
                             itemCount:
-                                (availableTimes[cubit.SelectedDoctorDateIndex!]
-                                                [1][0]
-                                            .length /
-                                        4)
-                                    .ceil(),
+                                cubit.getScheduleListRows(availableTimes),
                             itemBuilder: (context, item) {
                               return Center(
                                 child: ToggleSwitch(
                                   minWidth: 90.0.w,
                                   minHeight: 55.0.h,
                                   fontSize: 16.0.sp,
-                                  initialLabelIndex: null,
+                                  initialLabelIndex:
+                                      cubit.timeRowSelectedIndex != item
+                                          ? null
+                                          : cubit.timeSelectedIndex,
                                   activeBgColor: [
                                     Color.fromRGBO(1, 91, 76, 100),
                                   ],
                                   activeFgColor: Colors.white,
                                   inactiveBgColor: Colors.white,
-                                  totalSwitches: availableTimes[cubit
-                                                      .SelectedDoctorDateIndex!]
-                                                  [1][0]
-                                              .length >
-                                          4
-                                      ? (4 -
-                                              (availableTimes[cubit
-                                                              .SelectedDoctorDateIndex!]
-                                                          [1][0]
-                                                      .length *
-                                                  item))
-                                          .toInt()
-                                          .abs()
-                                      : availableTimes[cubit
-                                              .SelectedDoctorDateIndex!][1][0]
-                                          .length,
+                                  totalSwitches: cubit.getScheduleTotalItems(
+                                      availableTimes)[item],
                                   labels: List.generate(
-                                      availableTimes[cubit.SelectedDoctorDateIndex!]
-                                                      [1][0]
-                                                  .length >
-                                              4
-                                          ? ((4 -
-                                                  (availableTimes[cubit.SelectedDoctorDateIndex!]
-                                                              [1][0]
-                                                          .length *
-                                                      item)))
-                                              .toInt()
-                                              .abs()
-                                          : availableTimes[cubit.SelectedDoctorDateIndex!]
-                                                  [1][0]
-                                              .length,
-                                      (index) =>
-                                          availableTimes[cubit.SelectedDoctorDateIndex!]
-                                              [1][0][index + (item * 4)]),
+                                      cubit.getScheduleTotalItems(
+                                          availableTimes)[item],
+                                      (index) => availableTimes[
+                                              cubit.SelectedDoctorDateIndex!][1]
+                                          [0][(item * 4) + index]),
                                   onToggle: (index) {
                                     print('switched to: $index');
+                                    cubit.changeSelectedDate(index, item);
                                   },
                                 ),
                               );

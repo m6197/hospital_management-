@@ -38,7 +38,8 @@ class MyApp extends StatelessWidget {
                 create: (context) => MainCubit()
                   ..getUserData()
                   ..getDoctors()
-                  ..getAvailableAnalysis())
+                  ..getAvailableAnalysis()
+                  ..getAvailableRadiology())
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

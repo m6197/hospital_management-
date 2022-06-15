@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/AnalysisModel.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
+import 'package:nabdat/Model/RadiolgyModel.dart';
 import 'package:nabdat/Model/UserModel.dart';
 import 'package:nabdat/Shared/network/local/chache_helper.dart';
 import 'package:nabdat/Shared/network/remote/end_points.dart';
@@ -22,7 +23,12 @@ class MainCubit extends Cubit<MainStates> {
   DateTime date = DateTime.now();
   List<String> specialize = [];
   List<Analysis> analysis = [];
+  List<Radiolgy> radiology = [];
+
   int? SelectedDoctorDateIndex = 0;
+  int? timeRowSelectedIndex = null;
+  int? timeSelectedIndex = 0;
+
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
@@ -32,6 +38,29 @@ class MainCubit extends Cubit<MainStates> {
   void ChangeSelectedDoctorDateIndex(int? index) {
     SelectedDoctorDateIndex = index;
     print(SelectedDoctorDateIndex);
+    emit(ChangeSelectedDoctorDateIndexState());
+  }
+
+  int? getScheduleListRows(List available) {
+    return (available[SelectedDoctorDateIndex!][1][0].length / 4).ceil();
+  }
+
+  List getScheduleTotalItems(List available) {
+    List nums = [];
+    int length = available[SelectedDoctorDateIndex!][1][0].length;
+    if (length <= 4) {
+      nums.add(length);
+    } else {
+      for (int i = 0; i < (length / 4).ceil(); i++) {
+        i != (length / 4).ceil() - 1 ? nums.add(4) : nums.add(length - (4 * i));
+      }
+    }
+    return nums;
+  }
+
+  void changeSelectedDate(int? index, int row) {
+    timeRowSelectedIndex = row;
+    timeSelectedIndex = index;
     emit(ChangeSelectedDoctorDateIndexState());
   }
 
@@ -56,7 +85,7 @@ class MainCubit extends Cubit<MainStates> {
     loadingDoctors = true;
     emit(LoadingDoctorData());
     DioHelper.getData(url: GetDoctors).then((value) {
-      print(value.data);
+      print(value.data.length);
       value.data.forEach((i) {
         doctors.add(Doctor.fromJson(i));
         if (!(specialize.contains(i['specialize']))) {
@@ -84,6 +113,16 @@ class MainCubit extends Cubit<MainStates> {
     DioHelper.getData(url: AvailableAnalysis).then((value) {
       value.data.forEach((i) {
         analysis.add(Analysis.froJson(i));
+      });
+    }).catchError((onError) {
+      print(onError.response.data);
+    });
+  }
+
+  void getAvailableRadiology() {
+    DioHelper.getData(url: AvailableRadiology).then((value) {
+      value.data.forEach((i) {
+        radiology.add(Radiolgy.froJson(i));
       });
     }).catchError((onError) {
       print(onError.response.data);

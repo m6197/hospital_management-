@@ -87,16 +87,6 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       )),
-                  ButtonBarEntry(
-                    onTap: () => print('Third item tapped'),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
                 ],
               ),
               Padding(

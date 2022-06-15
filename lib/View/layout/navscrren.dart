@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
+import 'package:nabdat/View/homescreen_components/reservations.dart';
 import 'package:nabdat/View/layout/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../homescreen_components/homescreen.dart';
@@ -10,6 +11,7 @@ import '../homescreen_components/setting_screen.dart';
 class navscreen extends StatelessWidget {
   List<Widget> screens = [
     homescrren(),
+    Reservations(),
     ProfileScreen(),
     setting(),
   ];
@@ -45,6 +47,12 @@ class navscreen extends StatelessWidget {
                     ),
                   ),
                   label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.sticky_note_2_outlined,
+                  ),
+                  label: 'Reservations',
                 ),
                 BottomNavigationBarItem(
                   icon: ImageIcon(
