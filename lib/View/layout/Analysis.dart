@@ -2,11 +2,11 @@ import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Model/AnalysisModel.dart';
-import 'package:nabdat/View//layoutComponents/bones.dart';
-import 'package:flutter/cupertino.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:nabdat/View/layoutComponents/Coved%2019.dart';
-import 'package:nabdat/View/layoutComponents/X-rays.dart';
+
 
 class Analysis_screen extends StatelessWidget {
   @override
@@ -104,8 +104,8 @@ class Analysis_screen extends StatelessWidget {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: (6 / 2).h,
+                          crossAxisCount: 2,
+                          childAspectRatio: (8 / 2).h,
                           crossAxisSpacing: 5,
                           mainAxisSpacing: 20),
                       itemCount: MainCubit.GET(context).analysis.length,

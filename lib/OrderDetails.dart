@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../shared/components/components.dart';
+
+import 'View/shared/components/components.dart';
+
 class OrderDetails extends StatelessWidget {
    OrderDetails({Key? key}) : super(key: key);
 var x = 50;

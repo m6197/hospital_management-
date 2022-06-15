@@ -105,8 +105,8 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                   child: GridView.builder(
                       shrinkWrap: true,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: (6 / 2).h,
+                          crossAxisCount: 2,
+                          childAspectRatio: (8 / 2).h,
                           crossAxisSpacing: 5,
                           mainAxisSpacing: 20),
                       itemCount: MainCubit.GET(context).specialize.length,
