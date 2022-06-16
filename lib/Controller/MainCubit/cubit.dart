@@ -251,7 +251,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   List? getDaySchedule(int day, Doctor doctor) {
-    switch (day) {
+    switch ((day / 7).ceil()) {
       case 1:
         return [doctor.schedule.mon_time, "Mon"];
       case 2:
