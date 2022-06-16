@@ -6,6 +6,9 @@ import 'package:nabdat/Shared/network/local/chache_helper.dart';
 import 'package:nabdat/Shared/network/remote/dio_helper.dart';
 import 'package:nabdat/Shared/network/remote/end_points.dart';
 import 'package:nabdat/View/layout/navscrren.dart';
+import 'package:nabdat/View/login/forget_password.dart';
+import 'package:nabdat/View/login/new_pass.dart';
+import 'package:nabdat/View/login/verfivation.dart';
 
 import '../../Model/UserModel.dart';
 
@@ -25,10 +28,31 @@ class AuthCubit extends Cubit<AuthStates> {
   var passcontrol_Signup = TextEditingController();
   var phonecontroller_Signup = TextEditingController();
   bool ispassword_Signup = true;
+  String verificationCode = "";
+  String otp = "";
+  var emailcontroller_Forget = TextEditingController();
+  bool ispassword1_Forget = true;
+  bool ispassword2_Forget = true;
+  var passcontrol_Forget1 = TextEditingController();
+  var passcontrol_Forget2 = TextEditingController();
+  bool reset = false;
+  var formkeyNewPassForget = GlobalKey<FormState>();
+  var formkeyForgetPass = GlobalKey<FormState>();
+
   //--------------------Methods-----------------//
 
   void LoginPassShowChange() {
     ispassword_Login = !ispassword_Login;
+    emit(PassShowChangeLogin());
+  }
+
+  void Forget1PassShowChange() {
+    ispassword1_Forget = !ispassword1_Forget;
+    emit(PassShowChangeLogin());
+  }
+
+  void Forget2PassShowChange() {
+    ispassword2_Forget = !ispassword2_Forget;
     emit(PassShowChangeLogin());
   }
 
@@ -113,6 +137,66 @@ class AuthCubit extends Cubit<AuthStates> {
             ],
           )));
       emit(SignupErrorState());
+    });
+  }
+
+  void forgetPass(String email, context) {
+    DioHelper.postData(url: ForgetPasswordEnd, data: {'email': email})
+        .then((value) {
+      print(value.data);
+      otp = value.data['otp'].toString();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => VerificationPage()));
+    }).catchError((onError) {
+      print(onError);
+    });
+  }
+
+  void addToVerficationCode(String text) {
+    verificationCode = text;
+    emit(EnterCodeState());
+  }
+
+  void verifyOtp(context) {
+    if (otp == verificationCode) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => NewPassForget()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red,
+          content: Row(
+            children: [
+              Icon(
+                Icons.error,
+                color: Colors.white,
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Text("Wrong OTP")
+            ],
+          )));
+    }
+  }
+
+  void resetPassword(context) {
+    reset = true;
+    emit(ResetLoadingState());
+    DioHelper.postData(url: ResetPassword, data: {
+      'email': emailcontroller_Forget.text,
+      'password': passcontrol_Forget2.text,
+      'otp': verificationCode
+    }).then((value) {
+      print(value.data);
+      reset = false;
+      emit(ResetSuccesState());
+      emailcontrol_Login.text = emailcontroller_Forget.text;
+      passcontrol_Login.text = passcontrol_Forget2.text;
+      Login(context);
+    }).catchError((onError) {
+      print(onError.response.data);
+      reset = true;
+      emit(ResetErrorState());
     });
   }
 }

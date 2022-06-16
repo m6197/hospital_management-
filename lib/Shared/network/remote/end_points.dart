@@ -6,3 +6,5 @@ String AvailableAnalysis = "admin/analysis";
 String AvailableRadiology = "admin/radiology";
 String NewReservation = "user/reservation";
 String CancleReservation = '/user/reservation/cancle';
+String ForgetPasswordEnd = 'user/forget';
+String ResetPassword = 'user/reset';

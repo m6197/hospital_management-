@@ -17,3 +17,11 @@ class SignupLoadingState extends AuthStates {}
 class SignupSuccesState extends AuthStates {}
 
 class SignupErrorState extends AuthStates {}
+
+class EnterCodeState extends AuthStates {}
+
+class ResetLoadingState extends AuthStates {}
+
+class ResetSuccesState extends AuthStates {}
+
+class ResetErrorState extends AuthStates {}
