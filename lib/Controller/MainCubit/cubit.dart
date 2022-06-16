@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/AnalysisModel.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
@@ -148,7 +149,7 @@ class MainCubit extends Cubit<MainStates> {
 
   Reservation? getFirstReservation() {
     Reservation? index;
-    currentUser!.reservations.forEach((element) {
+    currentUser!.reservations.reversed.forEach((element) {
       if (element.reservation_date == date.toString().split(" ")[0]) {
         index = element;
       }
@@ -265,5 +266,103 @@ class MainCubit extends Cubit<MainStates> {
       default:
         return null;
     }
+  }
+
+  String changeDateFormat(String Odate) {
+    List date2 = Odate.split("-");
+    String finalDate = "";
+    DateTime mydate =
+        DateTime(int.parse(date2[0]), int.parse(date2[1]), int.parse(date2[2]));
+    switch (mydate.weekday) {
+      case 1:
+        finalDate += "Mon";
+        break;
+      case 2:
+        finalDate += "Tue";
+        break;
+      case 3:
+        finalDate += "Wed";
+        break;
+      case 4:
+        finalDate += "Thu";
+        break;
+      case 5:
+        finalDate += "Fri";
+        break;
+      case 6:
+        finalDate += "Sat";
+        break;
+      case 7:
+        finalDate += "Sun";
+        break;
+    }
+    switch (mydate.month) {
+      case 1:
+        finalDate += " Jan";
+        break;
+      case 2:
+        finalDate += " Feb";
+        break;
+      case 3:
+        finalDate += " Mar";
+        break;
+      case 4:
+        finalDate += " Apr";
+        break;
+      case 5:
+        finalDate += " May";
+        break;
+      case 6:
+        finalDate += " Jun";
+        break;
+      case 7:
+        finalDate += " Jul";
+        break;
+      case 8:
+        finalDate += " Aug";
+        break;
+      case 9:
+        finalDate += " Sep";
+        break;
+      case 10:
+        finalDate += " Oct";
+        break;
+      case 11:
+        finalDate += " Nov";
+        break;
+      case 12:
+        finalDate += " Dec";
+        break;
+    }
+    return finalDate + " " + date2[2];
+  }
+
+  String changeTimeFormat(String time) {
+    var format = DateFormat("HH:mm");
+    var time2 = format.parse(time);
+    var finalTime;
+    if (time2.minute == 0) {
+      finalTime = time2.hour.toString() + ":" + "30";
+    } else {
+      finalTime = (time2.hour + 1).toString() + ":" + "00";
+      print(time2);
+    }
+    return time + "-" + finalTime;
+  }
+
+  String AmPm(String time) {
+    List t = time.split(":");
+    int h = int.parse(t[0]);
+    String finaltime = "";
+    if (h < 12) {
+      finaltime += (time + " AM");
+    } else if (h == 12) {
+      finaltime = t.join(":") + " PM";
+    } else {
+      h -= 12;
+      t[0] = h.toString();
+      finaltime = t.join(":") + " PM";
+    }
+    return finaltime;
   }
 }

@@ -218,7 +218,10 @@ class BonesScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => BookingScreen(doctorModel)),
-                );
+                ).then((value) {
+                  MainCubit.GET(context).timeSelectedIndex = null;
+                  MainCubit.GET(context).SelectedDoctorDateIndex = 0;
+                });
               },
             ),
           ],

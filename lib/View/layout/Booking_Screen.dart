@@ -45,6 +45,8 @@ class BookingScreen extends StatelessWidget {
                           IconButton(
                               onPressed: () {
                                 Navigator.pop(context);
+                                cubit.timeSelectedIndex = null;
+                                cubit.SelectedDoctorDateIndex = 0;
                               },
                               icon: Icon(
                                 Icons.arrow_back,

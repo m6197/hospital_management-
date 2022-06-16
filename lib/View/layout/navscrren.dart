@@ -21,6 +21,11 @@ class navscreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, states) {
           return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Color.fromRGBO(1, 205, 170, 70),
+              toolbarHeight: 0,
+              elevation: 0,
+            ),
             body: MainCubit.GET(context).loadingUserData == true
                 ? Center(
                     child: CircularProgressIndicator(

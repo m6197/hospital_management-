@@ -23,7 +23,7 @@ class homescrren extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 40.h,
+                    height: 20.h,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -36,7 +36,7 @@ class homescrren extends StatelessWidget {
                             Text(
                               'Hello',
                               style: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: 20.sp,
                               ),
                             ),
                             Text(
@@ -45,7 +45,7 @@ class homescrren extends StatelessWidget {
                                   : '',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18.sp,
+                                fontSize: 23.sp,
                               ),
                             ),
                           ],
@@ -310,7 +310,8 @@ class homescrren extends StatelessWidget {
                               width: 5.w,
                             ),
                             Text(
-                              'Monday,May 5',
+                              MainCubit.GET(context).changeDateFormat(
+                                  reservation!.reservation_date),
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -327,7 +328,16 @@ class homescrren extends StatelessWidget {
                               width: 5.w,
                             ),
                             Text(
-                              '11:00AM-12:00AM',
+                              MainCubit.GET(context).AmPm(MainCubit.GET(context)
+                                      .changeTimeFormat(
+                                          reservation.reservation_time)
+                                      .split("-")[0]) +
+                                  "-" +
+                                  MainCubit.GET(context).AmPm(
+                                      MainCubit.GET(context)
+                                          .changeTimeFormat(
+                                              reservation.reservation_time)
+                                          .split("-")[1]),
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -354,7 +364,10 @@ class homescrren extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => BookingScreen(doctor)),
-          );
+          ).then((value) {
+            MainCubit.GET(context).timeSelectedIndex = null;
+            MainCubit.GET(context).SelectedDoctorDateIndex = 0;
+          });
         },
         borderRadius: BorderRadius.circular(15.3.r),
         child: Container(

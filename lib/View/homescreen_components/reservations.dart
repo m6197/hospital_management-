@@ -23,19 +23,19 @@ class Reservations extends StatelessWidget {
                     children: [
                       Container(
                         width: double.infinity,
-                        height: 150.h,
+                        height: 150,
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(1, 205, 170, 70),
                           borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(20.0.r),
-                            bottomLeft: Radius.circular(20.0).r,
+                            bottomRight: Radius.circular(20.0),
+                            bottomLeft: Radius.circular(20.0),
                           ),
                         ),
                         child: Center(
                           child: Text(
-                            'Reservations',
+                            'Appointments',
                             style: TextStyle(
-                              fontSize: 32.sp,
+                              fontSize: 32,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -205,7 +205,8 @@ Widget appointment(context, Reservation? reservation, Doctor? doctor) {
                             width: 5.w,
                           ),
                           Text(
-                            'Monday,May 5',
+                            MainCubit.GET(context).changeDateFormat(
+                                reservation!.reservation_date),
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -222,7 +223,16 @@ Widget appointment(context, Reservation? reservation, Doctor? doctor) {
                             width: 5.w,
                           ),
                           Text(
-                            '11:00AM-12:00AM',
+                            MainCubit.GET(context).AmPm(MainCubit.GET(context)
+                                    .changeTimeFormat(
+                                        reservation.reservation_time)
+                                    .split("-")[0]) +
+                                "-" +
+                                MainCubit.GET(context).AmPm(
+                                    MainCubit.GET(context)
+                                        .changeTimeFormat(
+                                            reservation.reservation_time)
+                                        .split("-")[1]),
                             style: TextStyle(
                               color: Colors.white,
                             ),
