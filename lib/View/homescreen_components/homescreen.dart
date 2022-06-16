@@ -184,7 +184,7 @@ class homescrren extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
+                  borderRadius: BorderRadius.circular(22.r),
                   color: Color.fromRGBO(1, 205, 170, 190),
                 ),
                 child: Image(
@@ -328,87 +328,86 @@ class homescrren extends StatelessWidget {
   }
 
   Widget doctor(context, Doctor doctor) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BookingScreen(doctor)),
-        );
-      },
-      child: Container(
-        child: Padding(
-          padding: EdgeInsets.only(right: 15.w, left: 15.w, top: 10.h),
-          child: Container(
-            height: 115.h,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15.3.r),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 2.r,
-                  blurRadius: 3.r,
-                  offset: Offset(0, 3), // changes position of shadow
+    return Padding(
+      padding: EdgeInsets.only(right: 15.w, left: 15.w, top: 10.h),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => BookingScreen(doctor)),
+          );
+        },
+        borderRadius: BorderRadius.circular(15.3.r),
+        child: Container(
+          height: 115.h,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.3.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 2.r,
+                blurRadius: 3.r,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(left: 10.w),
+                  child: CircleAvatar(
+                    radius: 50.r,
+                    backgroundImage: NetworkImage(doctor.photo),
+                  )),
+              Padding(
+                padding: EdgeInsets.only(top: 31.h, left: 15.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Dr. ' + doctor.name,
+                      style: TextStyle(
+                        color: Color.fromARGB(200, 1, 91, 76),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      doctor.specialize + ' Specialis',
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: Color.fromARGB(200, 1, 91, 76),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Row(
+                      children: [
+                        Image.asset('assets/image/Path 52.png'),
+                        Text(
+                          '${doctor.rate}',
+                          style: TextStyle(
+                            color: Color.fromARGB(200, 1, 91, 76),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 50.w,
+                        ),
+                        Text(
+                          '50 Reviews',
+                          style: TextStyle(
+                            color: Color.fromARGB(200, 1, 91, 76),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Padding(
-                    padding: EdgeInsets.only(left: 10.w),
-                    child: CircleAvatar(
-                      radius: 50.r,
-                      backgroundImage: NetworkImage(doctor.photo),
-                    )),
-                Padding(
-                  padding: EdgeInsets.only(top: 31.h, left: 15.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Dr. ' + doctor.name,
-                        style: TextStyle(
-                          color: Color.fromARGB(200, 1, 91, 76),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        doctor.specialize + ' Specialis',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: Color.fromARGB(200, 1, 91, 76),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      Row(
-                        children: [
-                          Image.asset('assets/image/Path 52.png'),
-                          Text(
-                            '${doctor.rate}',
-                            style: TextStyle(
-                              color: Color.fromARGB(200, 1, 91, 76),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 50.w,
-                          ),
-                          Text(
-                            '50 Reviews',
-                            style: TextStyle(
-                              color: Color.fromARGB(200, 1, 91, 76),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),
