@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Home',
+            title: 'Nabdat',
             // You can use the library anywhere in the app even in theme
             theme: ThemeData(
               textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),

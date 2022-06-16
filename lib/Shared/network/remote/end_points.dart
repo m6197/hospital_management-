@@ -5,3 +5,4 @@ String GetDoctors = "user/getdoctors";
 String AvailableAnalysis = "admin/analysis";
 String AvailableRadiology = "admin/radiology";
 String NewReservation = "user/reservation";
+String CancleReservation = '/user/reservation/cancle';

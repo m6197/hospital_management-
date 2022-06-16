@@ -23,3 +23,9 @@ class LoadingBooking extends MainStates {}
 class SuccessBooking extends MainStates {}
 
 class ErrorBooking extends MainStates {}
+
+class LoadingCanclle extends MainStates {}
+
+class SuccessCancle extends MainStates {}
+
+class ErrorCancle extends MainStates {}

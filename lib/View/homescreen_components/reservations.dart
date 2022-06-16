@@ -5,6 +5,7 @@ import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:nabdat/Model/UserModel.dart';
+import 'package:nabdat/View/shared/components/components.dart';
 
 class Reservations extends StatelessWidget {
   @override
@@ -72,7 +73,8 @@ class Reservations extends StatelessWidget {
                                       context,
                                       cubit.currentUser!.reservations[index],
                                       cubit.getDoctorById(cubit.currentUser!
-                                          .reservations[index].reserved_to));
+                                          .reservations[index].reserved_to),
+                                      cubit);
                                 } else {
                                   return Container();
                                 }
@@ -114,7 +116,8 @@ class Reservations extends StatelessWidget {
                                       context,
                                       cubit.currentUser!.reservations[index],
                                       cubit.getDoctorById(cubit.currentUser!
-                                          .reservations[index].reserved_to));
+                                          .reservations[index].reserved_to),
+                                      cubit);
                                 } else {
                                   return Container();
                                 }
@@ -127,7 +130,8 @@ class Reservations extends StatelessWidget {
   }
 }
 
-Widget appointment(context, Reservation? reservation, Doctor? doctor) {
+Widget appointment(
+    context, Reservation? reservation, Doctor? doctor, MainCubit cubit) {
   return InkWell(
     onTap: () {},
     child: Padding(
@@ -169,7 +173,7 @@ Widget appointment(context, Reservation? reservation, Doctor? doctor) {
                     Text(
                       doctor.name == 'Radiology Center' ||
                               doctor.name == 'Analysis Center'
-                          ? "Hospital " + doctor.name
+                          ? reservation!.type
                           : doctor.specialize + ' Specialis',
                       style: TextStyle(
                         color: Colors.white,
@@ -177,6 +181,48 @@ Widget appointment(context, Reservation? reservation, Doctor? doctor) {
                     ),
                   ],
                 ),
+                Spacer(),
+                IconButton(
+                    onPressed: () {
+                      AlertDialog alert = AlertDialog(
+                        title: Center(child: Text("Cencle Appointment")),
+                        content: Text(
+                          "Do you want cancle appointment?",
+                          textAlign: TextAlign.center,
+                        ),
+                        actionsAlignment: MainAxisAlignment.center,
+                        actions: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0.w),
+                            child: TextButton(
+                              child: Text("Yes"),
+                              onPressed: () {
+                                cubit.cancleBook(reservation!.id, context);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(8.0.w),
+                            child: TextButton(
+                              child: Text("No"),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          )
+                        ],
+                      );
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return cubit.canceling == true
+                              ? CircularProgressIndicator()
+                              : alert;
+                        },
+                      );
+                    },
+                    icon: Icon(Icons.close_rounded, color: Colors.white))
               ],
             ),
             SizedBox(
@@ -233,6 +279,23 @@ Widget appointment(context, Reservation? reservation, Doctor? doctor) {
                                         .changeTimeFormat(
                                             reservation.reservation_time)
                                         .split("-")[1]),
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.price_change,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text(
+                            reservation.price.floor().toString() + " LE",
                             style: TextStyle(
                               color: Colors.white,
                             ),

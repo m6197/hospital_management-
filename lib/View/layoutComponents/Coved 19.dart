@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/AnalysisModel.dart';
+import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../shared/components/components.dart';
@@ -254,7 +255,11 @@ class CovedScreen extends StatelessWidget {
                           isLoading: cubit.Booking,
                           text: 'Book Appointment',
                           function: () {
-                            cubit.BookAppointment(cubit.doctors[23], context);
+                            Doctor doc = cubit.doctors[23];
+                            doc.price = analysis.price;
+                            doc.specialize = analysis.name;
+                            cubit.BookAppointment(doc, context);
+                            doc.name = "Analysis Center";
                           }),
                     ),
                     SizedBox(

@@ -33,6 +33,8 @@ class MainCubit extends Cubit<MainStates> {
   DateTime selectedDate = DateTime.now();
   String selectedTime = "";
   bool Booking = false;
+  bool canceling = false;
+
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
@@ -150,7 +152,8 @@ class MainCubit extends Cubit<MainStates> {
   Reservation? getFirstReservation() {
     Reservation? index;
     currentUser!.reservations.reversed.forEach((element) {
-      if (element.reservation_date == date.toString().split(" ")[0]) {
+      if (element.reservation_date == date.toString().split(" ")[0] &&
+          element.status != 'canceled') {
         index = element;
       }
     });
@@ -364,5 +367,27 @@ class MainCubit extends Cubit<MainStates> {
       finaltime = t.join(":") + " PM";
     }
     return finaltime;
+  }
+
+  void cancleBook(double id, context) {
+    loadingDoctors = true;
+    emit(LoadingCanclle());
+    Navigator.pop(context);
+    DioHelper.postData(
+            url: CancleReservation,
+            data: {"reservation_id": id},
+            token: "Bearer ${token}")
+        .then((value) {
+      print(value.data);
+      emit(SuccessCancle());
+      getUserData();
+      getDoctors();
+      getAvailableAnalysis();
+      getAvailableRadiology();
+    }).catchError((onError) {
+      print(onError);
+      loadingDoctors = false;
+      emit(ErrorCancle());
+    });
   }
 }

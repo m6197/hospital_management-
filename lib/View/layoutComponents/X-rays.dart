@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
+import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:nabdat/Model/RadiolgyModel.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -253,7 +254,10 @@ class XRayScreen extends StatelessWidget {
                           width: 260.w,
                           text: 'Book Appointment',
                           function: () {
-                            cubit.BookAppointment(cubit.doctors[22], context);
+                            Doctor doc = cubit.doctors[22];
+                            doc.price = radiolgy.price;
+                            doc.specialize = radiolgy.name;
+                            cubit.BookAppointment(doc, context);
                           }),
                     ),
                     SizedBox(
