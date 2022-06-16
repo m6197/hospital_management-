@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/AnalysisModel.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:nabdat/Model/RadiolgyModel.dart';
 import 'package:nabdat/Model/UserModel.dart';
+import 'package:nabdat/OrderDetailsConfirmed.dart';
 import 'package:nabdat/Shared/network/local/chache_helper.dart';
 import 'package:nabdat/Shared/network/remote/end_points.dart';
 
@@ -24,11 +26,12 @@ class MainCubit extends Cubit<MainStates> {
   List<String> specialize = [];
   List<Analysis> analysis = [];
   List<Radiolgy> radiology = [];
-
   int? SelectedDoctorDateIndex = 0;
   int? timeRowSelectedIndex = null;
   int? timeSelectedIndex = 0;
-
+  DateTime selectedDate = DateTime.now();
+  String selectedTime = "";
+  bool Booking = false;
   //------------Methods-----------------//
   void changeNavIndex(int index) {
     currentIndex = index;
@@ -74,7 +77,7 @@ class MainCubit extends Cubit<MainStates> {
         emit(SuccessUserData());
         currentUser = User.fromJson(value.data['data']);
       }).catchError((onError) {
-        print(onError.response.data);
+        print(onError);
         loadingUserData = false;
         emit(ErrorUserData());
       });
@@ -82,6 +85,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   void getDoctors() {
+    doctors = [];
     loadingDoctors = true;
     emit(LoadingDoctorData());
     DioHelper.getData(url: GetDoctors).then((value) {
@@ -110,6 +114,7 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   void getAvailableAnalysis() {
+    analysis = [];
     DioHelper.getData(url: AvailableAnalysis).then((value) {
       value.data.forEach((i) {
         analysis.add(Analysis.froJson(i));
@@ -119,7 +124,19 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
+  bool checkUpcoming() {
+    bool check = false;
+    currentUser!.reservations.forEach((element) {
+      if (element.status == 'upcoming' &&
+          element.reservation_date != date.toString().split(" ")[0]) {
+        check = true;
+      }
+    });
+    return check;
+  }
+
   void getAvailableRadiology() {
+    radiology = [];
     DioHelper.getData(url: AvailableRadiology).then((value) {
       value.data.forEach((i) {
         radiology.add(Radiolgy.froJson(i));
@@ -127,6 +144,97 @@ class MainCubit extends Cubit<MainStates> {
     }).catchError((onError) {
       print(onError.response.data);
     });
+  }
+
+  Reservation? getFirstReservation() {
+    Reservation? index;
+    currentUser!.reservations.forEach((element) {
+      if (element.reservation_date == date.toString().split(" ")[0]) {
+        index = element;
+      }
+    });
+    return index;
+  }
+
+  Doctor? getDoctorById(double id) {
+    Doctor? doc;
+    for (int i = 0; i < doctors.length; i++) {
+      if (doctors[i].id == id) {
+        doc = doctors[i];
+      }
+    }
+    return doc;
+  }
+
+  void setSelectedDate(int Sday) {
+    selectedDate = DateTime(2022, date.month, Sday);
+  }
+
+  void setSelectedTime(String _selectedTime) {
+    selectedTime = _selectedTime;
+  }
+
+  void BookAppointment(Doctor doctor, context) {
+    print(selectedDate.toString());
+    print(selectedTime);
+    if (validateBook()) {
+      Booking = true;
+      emit(LoadingBooking());
+      DioHelper.postData(
+              url: NewReservation,
+              data: {
+                "reserved_to": doctor.id,
+                "price": doctor.price,
+                "reservation_date": selectedDate.toString().split(" ")[0],
+                "reservation_time": selectedTime,
+                "type": doctor.specialize
+              },
+              token: "Bearer ${token}")
+          .then((value) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OrderDetailsConfirmed(value.data['id'])),
+            (route) => false);
+        print(value.data);
+        Booking = false;
+        emit(SuccessBooking());
+
+        selectedTime = "";
+        timeSelectedIndex = null;
+        getUserData();
+        getDoctors();
+        getAvailableRadiology();
+        getAvailableAnalysis();
+      }).catchError((onError) {
+        Booking = false;
+        emit(ErrorBooking());
+        print(onError);
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red,
+          content: Row(
+            children: [
+              Icon(
+                Icons.error,
+                color: Colors.white,
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Text("Please Select Time")
+            ],
+          )));
+    }
+  }
+
+  bool validateBook() {
+    if (selectedTime != "") {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   List availableDates(Doctor doctor) {

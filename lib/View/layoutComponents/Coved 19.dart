@@ -104,6 +104,9 @@ class CovedScreen extends StatelessWidget {
                         }),
                         onToggle: (index) {
                           cubit.ChangeSelectedDoctorDateIndex(index);
+                          cubit.setSelectedDate(availableTimes[index!][0]);
+                          cubit.selectedTime = "";
+                          cubit.timeSelectedIndex = null;
                         },
                       ),
                     ),
@@ -162,6 +165,9 @@ class CovedScreen extends StatelessWidget {
                                     onToggle: (index) {
                                       print('switched to: $index');
                                       cubit.changeSelectedDate(index, item);
+                                      cubit.setSelectedTime(availableTimes[
+                                              cubit.SelectedDoctorDateIndex!][1]
+                                          [0][(item * 4) + index!]);
                                     },
                                   ),
                                 );
@@ -245,8 +251,11 @@ class CovedScreen extends StatelessWidget {
                       alignment: Alignment.bottomCenter,
                       child: defaultButton(
                           width: 260.w,
+                          isLoading: cubit.Booking,
                           text: 'Book Appointment',
-                          function: () {}),
+                          function: () {
+                            cubit.BookAppointment(cubit.doctors[23], context);
+                          }),
                     ),
                     SizedBox(
                       height: 15.h,

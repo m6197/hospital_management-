@@ -19,6 +19,11 @@ class BookingScreen extends StatelessWidget {
           var cubit = MainCubit.GET(context);
           List availableTimes = cubit.availableDates(doctor);
           return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Color.fromRGBO(1, 205, 170, 70),
+              toolbarHeight: 0,
+              elevation: 0,
+            ),
             body: CustomScrollView(slivers: [
               SliverFillRemaining(
                 hasScrollBody: true,
@@ -26,7 +31,7 @@ class BookingScreen extends StatelessWidget {
                   Stack(children: [
                     Container(
                       width: double.infinity,
-                      height: 120.h,
+                      height: 150.h,
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(1, 205, 170, 70),
                         borderRadius: BorderRadius.only(
@@ -34,20 +39,33 @@ class BookingScreen extends StatelessWidget {
                           bottomLeft: Radius.circular(20.0.r),
                         ),
                       ),
-                      child: Center(
-                        child: Text(
-                          'Booking',
-                          style: TextStyle(
-                            fontSize: 32.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              )),
+                          Center(
+                            child: Text(
+                              'Booking',
+                              style: TextStyle(
+                                fontSize: 32.sp,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsets.only(top: 90.h, left: 25.w, right: 25.w),
+                          EdgeInsets.only(top: 120.h, left: 25.w, right: 25.w),
                       child: Container(
                         height: 240.h,
                         decoration: BoxDecoration(
@@ -299,6 +317,9 @@ class BookingScreen extends StatelessWidget {
                       }),
                       onToggle: (index) {
                         cubit.ChangeSelectedDoctorDateIndex(index);
+                        cubit.setSelectedDate(availableTimes[index!][0]);
+                        cubit.selectedTime = "";
+                        cubit.timeSelectedIndex = null;
                       },
                     ),
                   ),
@@ -356,6 +377,9 @@ class BookingScreen extends StatelessWidget {
                                   onToggle: (index) {
                                     print('switched to: $index');
                                     cubit.changeSelectedDate(index, item);
+                                    cubit.setSelectedTime(availableTimes[
+                                            cubit.SelectedDoctorDateIndex!][1]
+                                        [0][(item * 4) + index!]);
                                   },
                                 ),
                               );
@@ -366,8 +390,11 @@ class BookingScreen extends StatelessWidget {
                       alignment: Alignment.bottomCenter,
                       child: defaultButton(
                           width: 260.w,
+                          isLoading: cubit.Booking,
                           text: 'Book Appointment',
-                          function: () {}),
+                          function: () {
+                            cubit.BookAppointment(doctor, context);
+                          }),
                     ),
                   ),
                   SizedBox(

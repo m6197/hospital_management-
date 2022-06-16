@@ -17,3 +17,9 @@ class SuccessDoctorData extends MainStates {}
 class LoadingDoctorData extends MainStates {}
 
 class ChangeSelectedDoctorDateIndexState extends MainStates {}
+
+class LoadingBooking extends MainStates {}
+
+class SuccessBooking extends MainStates {}
+
+class ErrorBooking extends MainStates {}

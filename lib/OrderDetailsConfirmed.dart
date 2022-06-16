@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:nabdat/View/layout/navscrren.dart';
 
 import 'View/shared/components/components.dart';
 
-
-
 class OrderDetailsConfirmed extends StatelessWidget {
-  var orderCode = 1200;
+  final orderCode;
+  OrderDetailsConfirmed(this.orderCode);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(1, 205, 170, 70),
+        toolbarHeight: 0,
+        elevation: 0,
+      ),
       body: Column(children: [
         Container(
           width: double.infinity,
@@ -23,7 +28,7 @@ class OrderDetailsConfirmed extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              'Settings',
+              'Success',
               style: TextStyle(
                 fontSize: 32,
                 color: Colors.white,
@@ -48,7 +53,7 @@ class OrderDetailsConfirmed extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Order Confirmed',
+                  'Booking Confirmed',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -74,7 +79,14 @@ class OrderDetailsConfirmed extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: defaultButton(
-                width: 240, text: 'Back to Home', function: () {}),
+                width: 240,
+                text: 'Back to Home',
+                function: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => navscreen()),
+                      (route) => false);
+                }),
           ),
         ),
         SizedBox(

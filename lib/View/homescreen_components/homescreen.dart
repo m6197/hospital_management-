@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
-import 'package:nabdat/OrderDetails.dart';
+import 'package:nabdat/Model/UserModel.dart';
 import 'package:nabdat/View/layout/Analysis.dart';
 import 'package:nabdat/View/layout/Booking_Screen.dart';
 import 'package:nabdat/View/layout/Radiolgy_Screen.dart';
@@ -134,7 +134,20 @@ class homescrren extends StatelessWidget {
                       ),
                     ],
                   ),
-                  appointment(context),
+                  cubit.loadingDoctors
+                      ? Center(
+                          child: CircularProgressIndicator(
+                              color: Color.fromARGB(200, 1, 205, 170)),
+                        )
+                      : cubit.getFirstReservation() == null
+                          ? Center(
+                              child: Text("You have no appointments today"),
+                            )
+                          : appointment(
+                              context,
+                              cubit.getFirstReservation(),
+                              cubit.getDoctorById(
+                                  cubit.getFirstReservation()!.reserved_to)),
                   Padding(
                     padding: EdgeInsets.only(left: 16.w, top: 10.h),
                     child: Align(
@@ -150,7 +163,10 @@ class homescrren extends StatelessWidget {
                     ),
                   ),
                   cubit.loadingDoctors
-                      ? Center(child: CircularProgressIndicator())
+                      ? Center(
+                          child: CircularProgressIndicator(
+                          color: Color.fromARGB(200, 1, 205, 170),
+                        ))
                       : ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -216,12 +232,9 @@ class homescrren extends StatelessWidget {
     );
   }
 
-  Widget appointment(context) {
+  Widget appointment(context, Reservation? reservation, Doctor? doctor) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => OrderDetails()));
-      },
+      onTap: () {},
       child: Padding(
         padding: EdgeInsets.all(15.0.r),
         child: Container(
@@ -239,9 +252,9 @@ class homescrren extends StatelessWidget {
                     width: 20.w,
                   ),
                   CircleAvatar(
+                    backgroundColor: Colors.white,
                     radius: 25.0.r,
-                    backgroundImage: NetworkImage(
-                        'https://www.allaboutbirds.org/guide/assets/photo/303618951-480px.jpg'),
+                    backgroundImage: NetworkImage(doctor!.photo),
                   ),
                   SizedBox(
                     width: 15.w,
@@ -249,14 +262,20 @@ class homescrren extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        'Dr.Salma Emad',
+                        doctor.name == 'Radiology Center' ||
+                                doctor.name == 'Analysis Center'
+                            ? doctor.name
+                            : "Dr " + doctor.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        ' Dentel Specialis',
+                        doctor.name == 'Radiology Center' ||
+                                doctor.name == 'Analysis Center'
+                            ? "Hospital " + doctor.name
+                            : doctor.specialize + ' Specialis',
                         style: TextStyle(
                           color: Colors.white,
                         ),
