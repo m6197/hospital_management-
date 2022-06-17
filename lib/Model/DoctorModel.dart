@@ -16,7 +16,7 @@ class Doctor {
         ? Schedule.fromJson({})
         : Schedule.fromJson(data['schedule'][0]);
     this.price = data['price'];
-    this.photo = "https://nabdat.herokuapp.com/" + data['photo'];
+    this.photo = data['photo'];
   }
 }
 
