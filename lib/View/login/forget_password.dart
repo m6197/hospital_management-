@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nabdat/Controller/AuthCubit/cubit.dart';
 import 'package:nabdat/Controller/AuthCubit/states.dart';
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../View/shared/components/components.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -22,11 +24,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           return Scaffold(
             body: Center(
               child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
                 child: Form(
                   key: cubit.formkeyForgetPass,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
                     child: Column(children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Image.asset(
+                          'assets/image/uppershape2.png',
+
+                        ),
+                      ),
+                      SizedBox(height: 60.h,),
                       Text(
                         'Please enter your E-mail',
                         style: TextStyle(
@@ -35,24 +44,27 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
-                      defaultformfiled(
-                          controller: cubit.emailcontroller_Forget,
-                          label: '',
-                          prefix: null,
-                          type: TextInputType.emailAddress,
-                          validate: (value) {
-                            if (value!.isEmpty) {
-                              return 'Enter your Email';
-                            }
-                            return null;
-                          }),
+                      Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                        child: defaultformfiled(
+                            controller: cubit.emailcontroller_Forget,
+                            label: '',
+                            prefix: null,
+                            type: TextInputType.emailAddress,
+                            validate: (value) {
+                              if (value!.isEmpty) {
+                                return 'Enter your Email';
+                              }
+                              return null;
+                            }),
+                      ),
                       SizedBox(
-                        height: 20,
+                        height: 20.h,
                       ),
                       defaultButton(
-                          width: 160,
+                          width: 160.w,
                           text: 'Next',
                           function: () {
                             if (cubit.formkeyForgetPass.currentState!
@@ -62,8 +74,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                   cubit.emailcontroller_Forget.text, context);
                             }
                           }),
-                    ]),
-                  ),
+                      SizedBox(height: 60.h,),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Image.asset(
+                          'assets/image/down shape.png',
+                        ),
+                      ),
+                    ]
+                    ),
                 ),
               ),
             ),

@@ -60,7 +60,7 @@ class setting extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                   ],
                 ),
@@ -90,7 +90,7 @@ class setting extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                   ],
                 ),
@@ -120,7 +120,7 @@ class setting extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                   ],
                 ),
@@ -150,7 +150,7 @@ class setting extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                   ],
                 ),

@@ -50,7 +50,7 @@ class MedicalProfile extends StatelessWidget {
                       'assets/image/noun-report-987711.png',
                       width: 55,
                       height: 55,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                     SizedBox(
                       width: 15,
@@ -62,7 +62,7 @@ class MedicalProfile extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                   ],
                 ),
@@ -93,7 +93,7 @@ class MedicalProfile extends StatelessWidget {
                       'assets/image/noun-test-tube-987718.png',
                       width: 55,
                       height: 55,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                     SizedBox(
                       width: 15,
@@ -105,7 +105,7 @@ class MedicalProfile extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                   ],
                 ),
@@ -136,7 +136,7 @@ class MedicalProfile extends StatelessWidget {
                       'assets/image/noun-x-ray-4792268.png',
                       width: 55,
                       height: 55,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                     SizedBox(
                       width: 15,
@@ -148,7 +148,7 @@ class MedicalProfile extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Color.fromRGBO(1, 205, 170, 90),
+                      color: Color.fromARGB(200, 1, 91, 76),
                     ),
                   ],
                 ),

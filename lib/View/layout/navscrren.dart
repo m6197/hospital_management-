@@ -36,8 +36,8 @@ class navscreen extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               iconSize: 30.r,
-              selectedItemColor: Color.fromRGBO(1, 205, 170, 70),
-              unselectedItemColor: Color.fromRGBO(1, 205, 170, 170),
+              selectedItemColor:  Color.fromARGB(100, 1, 91, 76),
+              unselectedItemColor:  Color.fromARGB(200, 1, 91, 76),
               showSelectedLabels: false,
               showUnselectedLabels: false,
               currentIndex: MainCubit.GET(context).currentIndex,
@@ -56,6 +56,7 @@ class navscreen extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.sticky_note_2_outlined,
+                    size: 30,
                   ),
                   label: 'Reservations',
                 ),

@@ -5,7 +5,7 @@ import 'package:nabdat/Controller/MainCubit/cubit.dart';
 import 'package:nabdat/Controller/MainCubit/states.dart';
 import 'package:nabdat/Model/DoctorModel.dart';
 import 'package:nabdat/Model/UserModel.dart';
-import 'package:nabdat/View/shared/components/components.dart';
+
 
 class Reservations extends StatelessWidget {
   @override
@@ -97,6 +97,7 @@ class Reservations extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: 12.h,),
                       cubit.checkUpcoming() != true
                           ? Center(
                               child: Text("You have no upcoming appointments"),

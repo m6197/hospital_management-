@@ -36,7 +36,7 @@ class homescrren extends StatelessWidget {
                             Text(
                               'Hello',
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 16.sp,
                               ),
                             ),
                             Text(
@@ -45,7 +45,7 @@ class homescrren extends StatelessWidget {
                                   : '',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 23.sp,
+                                fontSize: 16.sp,
                               ),
                             ),
                           ],

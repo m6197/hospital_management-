@@ -115,6 +115,7 @@ class _PersonalDataState extends State<PersonalData> {
                         ),
                         defaultformfiled(
                             controller: datecontrol,
+                            prefix: Icons.date_range,
                             label: 'Date of Birth',
                             type: TextInputType.text,
                             validate: (value) {
@@ -128,6 +129,7 @@ class _PersonalDataState extends State<PersonalData> {
                         ),
                         defaultformfiled(
                             controller: emailcontrol,
+                            prefix: Icons.email,
                             label: 'E-mail',
                             type: TextInputType.text,
                             validate: (value) {
@@ -142,6 +144,7 @@ class _PersonalDataState extends State<PersonalData> {
                         defaultformfiled(
                             controller: phonecontrol,
                             label: 'Phone Number',
+                            prefix: Icons.phone,
                             type: TextInputType.text,
                             validate: (value) {
                               if (value!.isEmpty) {

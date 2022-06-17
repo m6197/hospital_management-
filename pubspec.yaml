@@ -96,6 +96,8 @@ flutter:
     - assets/image/Group 60.png
     - assets/image/Rectangle 52.png
     - assets/image/Path 52.png
+    - assets/image/uppershape1.png
+    - assets/image/uppershape2.png
 
 
   # To add assets to your application, add an assets section, like this:

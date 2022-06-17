@@ -68,7 +68,7 @@ class Doctor_screen extends StatelessWidget {
                     AnimatedButtonBar(
                       backgroundColor: Color.fromRGBO(1, 205, 170, 190),
                       foregroundColor: Color.fromRGBO(1, 205, 170, 120),
-                      radius: 25.0,
+                      radius: 25.0.r,
                       padding: EdgeInsets.all(16.0),
                       invertedSelection: false,
                       children: [
@@ -97,7 +97,7 @@ class Doctor_screen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 25,
+                    horizontal: 25.w,
                   ),
                   child: TextField(
                     onChanged: (value) {
@@ -110,10 +110,10 @@ class Doctor_screen extends StatelessWidget {
                         color: Color.fromRGBO(1, 205, 170, 70),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+                        borderRadius: BorderRadius.circular(15.0.r),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+                        borderRadius: BorderRadius.circular(15.0.r),
                         borderSide: BorderSide(
                           color: Color.fromRGBO(1, 205, 170, 70),
                         ),
@@ -131,9 +131,9 @@ class Doctor_screen extends StatelessWidget {
 
   Widget doctor(context, Doctor doctorModel) {
     return Padding(
-      padding: EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(15.0.r),
       child: Container(
-        height: 160,
+        height: 180.h,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(13),
@@ -153,7 +153,7 @@ class Doctor_screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(
                     left: 50,
-                    top: 20,
+                    top: 15,
                   ),
                   child: CircleAvatar(
                     radius: 50.r,
@@ -161,25 +161,26 @@ class Doctor_screen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 25, left: 15),
+                  padding: EdgeInsets.only(top: 25.h, left: 15.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Dr ' + doctorModel.name,
                         style: TextStyle(
+                          fontSize: 15.sp,
                           color: Color.fromARGB(200, 1, 91, 76),
                         ),
                       ),
                       Text(
                         doctorModel.specialize + ' Specialis',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 12.sp,
                           color: Color.fromARGB(200, 1, 91, 76),
                         ),
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 15.h,
                       ),
                       Row(
                         children: [
@@ -191,7 +192,7 @@ class Doctor_screen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            width: 50,
+                            width: 50.w,
                           ),
                           Text(
                             '50 Reviews',
@@ -207,7 +208,7 @@ class Doctor_screen extends StatelessWidget {
               ],
             ),
             defaultButton(
-              width: 280,
+              width: 280.w,
               text: 'Book Appointment',
               function: () {
                 Navigator.push(

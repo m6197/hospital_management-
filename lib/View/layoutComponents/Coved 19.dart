@@ -68,6 +68,7 @@ class CovedScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(height: 10.h,),
                     Padding(
                       padding: EdgeInsets.only(left: 25.w),
                       child: Align(
