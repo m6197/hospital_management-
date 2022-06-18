@@ -75,7 +75,7 @@ class MainCubit extends Cubit<MainStates> {
       loadingUserData = true;
       emit(LoadingUserData());
       DioHelper.getData(url: UserData, token: "Bearer ${token}").then((value) {
-        print(value.data);
+        print(value.data['analysis']);
         loadingUserData = false;
         emit(SuccessUserData());
         currentUser = User.fromJson(value.data['data']);

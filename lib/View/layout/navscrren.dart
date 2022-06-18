@@ -36,8 +36,8 @@ class navscreen extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               iconSize: 30.r,
-              selectedItemColor:  Color.fromARGB(100, 1, 91, 76),
-              unselectedItemColor:  Color.fromARGB(200, 1, 91, 76),
+              selectedItemColor: Color.fromARGB(200, 1, 91, 76),
+              unselectedItemColor: Color.fromARGB(100, 1, 91, 76),
               showSelectedLabels: false,
               showUnselectedLabels: false,
               currentIndex: MainCubit.GET(context).currentIndex,
@@ -46,33 +46,30 @@ class navscreen extends StatelessWidget {
               },
               items: [
                 BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage(
-                      'assets/image/noun-home-4796082.png',
-                    ),
+                  icon: Icon(
+                    Icons.home_outlined,
+                    size: 35,
                   ),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.sticky_note_2_outlined,
-                    size: 30,
+                    size: 35,
                   ),
                   label: 'Reservations',
                 ),
                 BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage(
-                      'assets/image/noun-profile-709597.png',
-                    ),
+                  icon: Icon(
+                    Icons.person_outline_outlined,
+                    size: 35,
                   ),
                   label: 'Profile',
                 ),
                 BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage(
-                      'assets/image/settings.png',
-                    ),
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    size: 35,
                   ),
                   label: 'Settings',
                 ),

@@ -40,7 +40,7 @@ dependencies:
   auth_buttons: ^2.0.4
   animated_button_bar: ^0.0.2
   font_awesome_flutter: ^10.1.0
-  page_transition: "^1.1.6"
+  page_transition: "^2.0.5"
   flutter_screenutil: ^5.5.3+2
   flutter_bloc: ^8.0.1
   dio: ^4.0.6
@@ -49,11 +49,18 @@ dependencies:
   toggle_switch: ^2.0.1
   intl: ^0.17.0
   pin_code_fields: ^7.4.0
+  animated_splash_screen: ^1.2.0
 dev_dependencies:
+  flutter_launcher_icons: "^0.9.2"
+
   flutter_test:
     sdk: flutter
 
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/image/Logo.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -98,6 +105,8 @@ flutter:
     - assets/image/Path 52.png
     - assets/image/uppershape1.png
     - assets/image/uppershape2.png
+    - assets/image/Final_1.gif
+    - assets/image/Logo.png
 
 
   # To add assets to your application, add an assets section, like this:
